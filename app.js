@@ -1,11 +1,19 @@
 #!/usr/bin/env node
+if (process.platform === 'win32') {
+  try {
+    require('child_process').execSync('chcp 65001 >NUL', { stdio: 'ignore' })
+  } catch (_) {}
+}
+
 async function start() {
   process.on('uncaughtException', function (err) {
-    console.log(err)
+    console.error('[app] uncaughtException', err)
   })
-  // 如果需要手动修改anonymous_token，需要注释generateConfig调用
+  process.on('unhandledRejection', function (err) {
+    console.error('[app] unhandledRejection', err)
+  })
   require('./server').serveNcmApi({
-    checkVersion: true,
+    checkVersion: process.env.CHECK_VERSION === '1',
   })
 }
 start()

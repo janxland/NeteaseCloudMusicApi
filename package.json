@@ -3,7 +3,9 @@
   "version": "4.8.11",
   "description": "网易云音乐 NodeJS 版 API",
   "scripts": {
-    "start": "node app.js",
+    "start": "node cluster.js",
+    "start:single": "node app.js",
+    "start:dev": "node --watch app.js",
     "test": "mocha -r intelli-espower-loader -t 60000 server.test.js main.test.js --exit",
     "lint": "eslint \"**/*.{js,ts}\"",
     "lint-fix": "eslint --fix \"**/*.{js,ts}\"",

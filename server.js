@@ -10,6 +10,9 @@ const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
 const { qq } = require('./util/qq')
 const { kugou } = require('./util/kugou')
+
+// LOG_REQUESTS=1 时打印每条请求的 [OK] 日志
+const LOG_REQUESTS = process.env.LOG_REQUESTS === '1'
 /**
  * The version check result.
  * @readonly
@@ -136,7 +139,15 @@ async function consturctServer(moduleDefs) {
   const app = express()
   const { CORS_ALLOW_ORIGIN } = process.env
   app.set('trust proxy', true)
-  // JANXLAND修改
+  app.disable('x-powered-by')
+  app.set('etag', 'strong')
+
+  // 可选 gzip 压缩，未安装依赖时跳过
+  try {
+    const compression = require('compression')
+    app.use(compression({ threshold: 1024 }))
+  } catch (_) {}
+
   let otherServerHandler = (req, res) => {
     const api_map = {
       tencent: qq,
@@ -152,10 +163,8 @@ async function consturctServer(moduleDefs) {
       res.status(500).send({ msg: '666' })
     }
   }
-  //JANXLAND修改
-  /**
-   * CORS & Preflight request
-   */
+
+  // CORS & Preflight
   app.use((req, res, next) => {
     if (req.path !== '/' && !req.path.includes('.')) {
       res.set({
@@ -170,12 +179,9 @@ async function consturctServer(moduleDefs) {
     req.method === 'OPTIONS' ? res.status(204).end() : next()
   })
 
-  /**
-   * Cookie Parser
-   */
+  // Cookie parser
   app.use((req, _, next) => {
     req.cookies = {}
-    //;(req.headers.cookie || '').split(/\s*;\s*/).forEach((pair) => { //  Polynomial regular expression //
     ;(req.headers.cookie || '').split(/;\s+|(?<!\s)\s+$/g).forEach((pair) => {
       let crack = pair.indexOf('=')
       if (crack < 1 || crack == pair.length - 1) return
@@ -186,61 +192,71 @@ async function consturctServer(moduleDefs) {
     next()
   })
 
-  /**
-   * Body Parser and File Upload
-   */
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
-
   app.use(fileUpload())
-
-  /**
-   * Serving static files
-   */
   app.use(express.static(path.join(__dirname, 'public')))
 
-  /**
-   * Cache
-   */
+  // 归一化 apicache 的 key：剔除波动参数，避免 timestamp/realIP 让缓存形同虚设
+  const VOLATILE_QUERY_PARAMS = new Set([
+    'timestamp',
+    '_t',
+    'realIP',
+    'real_ip',
+    'proxy',
+    'noCookie',
+  ])
+  app.use((req, _res, next) => {
+    if (req.originalUrl && req.originalUrl.includes('?')) {
+      const [pathPart, qs] = req.originalUrl.split('?')
+      const filtered = qs
+        .split('&')
+        .filter((seg) => {
+          if (!seg) return false
+          const k = seg.split('=')[0]
+          return !VOLATILE_QUERY_PARAMS.has(k)
+        })
+        .join('&')
+      const normalized = filtered ? `${pathPart}?${filtered}` : pathPart
+      req.originalUrl = normalized
+      req.url = normalized
+    }
+    next()
+  })
+
   app.use(cache('2 minutes', (_, res) => res.statusCode === 200))
 
-  /**
-   * Special Routers
-   */
+  const axios = require('axios')
+  app.use('/puppeteer', async (req, res) => {
+    let url = req.body.url || req.query.url
+    if (!url) {
+      return res.status(400).send('Missing "url" parameter')
+    }
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'janxland/ablaze-backend',
+        },
+        timeout: 10000,
+      })
+      res.send(response.data)
+    } catch (error) {
+      console.error((error && error.message) || error)
+      res.status(500).send('Error fetching URL content')
+    }
+  })
+
   const special = {
     'daily_signin.js': '/daily_signin',
     'fm_trash.js': '/fm_trash',
     'personal_fm.js': '/personal_fm',
   }
 
-  /**
-   * Load every modules in this directory
-   */
   const moduleDefinitions =
     moduleDefs ||
     (await getModulesDefinitions(path.join(__dirname, 'module'), special))
 
   for (const moduleDef of moduleDefinitions) {
-    // Register the route.
-    let axios = require('axios')
-
-    app.use('/puppeteer', async (req, res) => {
-      let url = req.body.url || req.query.url
-      if (!url) {
-        return res.status(400).send('Missing "url" parameter')
-      }
-      try {
-        const response = await axios.get(url, {
-          headers: {
-            'User-Agent': 'janxland/ablaze-backend',
-          },
-        })
-        res.send(response.data)
-      } catch (error) {
-        console.error(error)
-        res.status(500).send('Error fetching URL content')
-      }
-    })
     app.use(moduleDef.route, async (req, res) => {
       const match = require('@unblockneteasemusic/server')
       if (req.baseUrl === '/song/unblock') {
@@ -249,7 +265,6 @@ async function consturctServer(moduleDefs) {
             'pyncmd',
             'qq',
             'kugou',
-            'kuwo',
             'bilibili',
           ]).then((result) => {
             res.send(result)
@@ -287,27 +302,25 @@ async function consturctServer(moduleDefs) {
 
       try {
         const moduleResponse = await moduleDef.module(query, (...params) => {
-          // 参数注入客户端IP
+          // 注入客户端 IP
           const obj = [...params]
           let ip = req.ip
-
           if (ip.substr(0, 7) == '::ffff:') {
             ip = ip.substr(7)
           }
-          // console.log(ip)
           obj[3] = {
             ...obj[3],
             ip,
           }
           return request(...obj)
         })
-        console.log('[OK]', decode(req.originalUrl))
+        if (LOG_REQUESTS) console.log('[OK]', decode(req.originalUrl))
 
         const cookies = moduleResponse.cookie
         if (!query.noCookie) {
           if (Array.isArray(cookies) && cookies.length > 0) {
             if (req.protocol === 'https') {
-              // Try to fix CORS SameSite Problem
+              // CORS SameSite
               res.append(
                 'Set-Cookie',
                 cookies.map((cookie) => {
@@ -375,8 +388,20 @@ async function serveNcmApi(options) {
   /** @type {import('express').Express & ExpressExtension} */
   const appExt = app
   appExt.server = app.listen(port, host, () => {
-    console.log(`server running @ http://${host ? host : 'localhost'}:${port}`)
+    const tag = process.env.NODE_APP_INSTANCE
+      ? ` worker#${process.env.NODE_APP_INSTANCE}`
+      : process.send
+        ? ` worker pid=${process.pid}`
+        : ''
+    console.log(
+      `server running @ http://${host ? host : 'localhost'}:${port}${tag}`,
+    )
   })
+
+  // keep-alive: 复用 TCP，避免高频请求反复握手
+  appExt.server.keepAliveTimeout = 60000
+  appExt.server.headersTimeout = 65000
+  appExt.server.requestTimeout = 0
 
   return appExt
 }
