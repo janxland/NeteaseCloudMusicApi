@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY --chown=node:node . ./
 
-RUN npm i --omit=dev --ignore-scripts
+RUN npm i --omit=dev --ignore-scripts --no-package-lock
 
 EXPOSE 3000
 
