@@ -5,6 +5,7 @@ const request = require('./util/request')
 const packageJSON = require('./package.json')
 const exec = require('child_process').exec
 const cache = require('./util/apicache').middleware
+const { cachePolicy, cacheKeyOf } = require('./util/cache-policy')
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
@@ -13,6 +14,7 @@ const { kugou } = require('./util/kugou')
 
 // LOG_REQUESTS=1 时打印每条请求的 [OK] 日志
 const LOG_REQUESTS = process.env.LOG_REQUESTS === '1'
+const CACHE_TTL = '2 minutes'
 /**
  * The version check result.
  * @readonly
@@ -224,7 +226,8 @@ async function consturctServer(moduleDefs) {
     next()
   })
 
-  app.use(cache('2 minutes', (_, res) => res.statusCode === 200))
+  // appendKey 让缓存按账号分桶，否则不同登录态会命中同一份响应
+  app.use(cache(CACHE_TTL, cachePolicy, { appendKey: cacheKeyOf }))
 
   const axios = require('axios')
   app.use('/puppeteer', async (req, res) => {
@@ -246,6 +249,27 @@ async function consturctServer(moduleDefs) {
     }
   })
 
+  // 解灰提供方与路由解耦：惰性加载，且必须兜底 —— 原实现的 .then 无 catch，
+  // 上游 reject 会冒泡成 unhandledRejection，量大时拖慢实例。
+  const UNBLOCK_SOURCES = {
+    basic: ['pyncmd'],
+    extended: ['pyncmd', 'qq', 'kugou', 'bilibili'],
+  }
+  let unblockMatcher = null
+  const serveUnblock = async (req, res) => {
+    try {
+      unblockMatcher ||= require('@unblockneteasemusic/server')
+      const sources =
+        req.query.https === 'true'
+          ? UNBLOCK_SOURCES.extended
+          : UNBLOCK_SOURCES.basic
+      res.send(await unblockMatcher(req.query.id, sources))
+    } catch (error) {
+      console.error('[unblock]', req.query.id, (error && error.message) || error)
+      res.status(502).send({ code: 502, msg: 'unblock failed' })
+    }
+  }
+
   const special = {
     'daily_signin.js': '/daily_signin',
     'fm_trash.js': '/fm_trash',
@@ -258,29 +282,8 @@ async function consturctServer(moduleDefs) {
 
   for (const moduleDef of moduleDefinitions) {
     app.use(moduleDef.route, async (req, res) => {
-      const match = require('@unblockneteasemusic/server')
       if (req.baseUrl === '/song/unblock') {
-        if (req.query.https == 'true') {
-          return match(req.query.id, [
-            'pyncmd',
-            'qq',
-            'kugou',
-            'bilibili',
-          ]).then((result) => {
-            res.send(result)
-          })
-        } else {
-          return match(req.query.id, [
-            'pyncmd',
-            // 'qq',
-            // 'kuwo',
-            // 'migu',
-            // 'kugou',
-            // 'bilibili'
-          ]).then((result) => {
-            res.send(result)
-          })
-        }
+        return serveUnblock(req, res)
       }
       if (req.query.server && req.query.server != 'netease') {
         otherServerHandler(req, res)

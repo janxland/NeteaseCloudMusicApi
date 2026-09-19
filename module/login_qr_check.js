@@ -4,7 +4,7 @@ module.exports = async (query, request) => {
     type: 1,
   }
   try {
-    let result = await request(
+    const result = await request(
       'POST',
       `https://music.163.com/weapi/login/qrcode/client/login`,
       data,
@@ -15,7 +15,7 @@ module.exports = async (query, request) => {
         realIP: query.realIP,
       },
     )
-    result = {
+    return {
       status: 200,
       body: {
         ...result.body,
@@ -23,12 +23,13 @@ module.exports = async (query, request) => {
       },
       cookie: result.cookie,
     }
-    return result
   } catch (error) {
+    // 轮询失败不能抛 404：前端据 body.code 决定是否继续轮询，
+    // 抛出会让扫码状态机断链（原实现引用了未定义的 result → ReferenceError）。
     return {
       status: 200,
-      body: {},
-      cookie: result.cookie,
+      body: error.body || {},
+      cookie: error.cookie || [],
     }
   }
 }
