@@ -196,7 +196,12 @@ async function consturctServer(moduleDefs) {
 
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
-  app.use(fileUpload())
+  // multipart 解析只对云盘上传路由开启：全局挂载会把每条请求的边界解析
+  // 与文件缓冲都压在内存里，而 281 个接口中只有 /cloud 用到 req.files
+  app.use(
+    '/cloud',
+    fileUpload({ limits: { fileSize: 100 * 1024 * 1024, files: 1 } }),
+  )
   app.use(express.static(path.join(__dirname, 'public')))
 
   // 归一化 apicache 的 key：剔除波动参数，避免 timestamp/realIP 让缓存形同虚设

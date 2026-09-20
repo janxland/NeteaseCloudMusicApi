@@ -150,6 +150,10 @@ function ApiCache() {
         debug('[apicache] error in redis.hset()')
       }
     } else {
+      if (!memCache.accepts(value)) {
+        debug('value too large, skip caching for "' + key + '"')
+        return
+      }
       memCache.add(key, value, duration, expireCallback)
     }
 

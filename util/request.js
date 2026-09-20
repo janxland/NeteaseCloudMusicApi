@@ -9,6 +9,33 @@ const config = require('../util/config.json')
 const { DEVICE } = require('./client-profile')
 // request.debug = true // 开启可看到更详细信息
 
+// 进程级共享 Agent：原实现在每次 createRequest 里 new Agent，请求结束即被丢弃，
+// keepAlive 从未真正复用 —— 每个上游调用都付一次 TCP+TLS 握手。
+const sharedHttpAgent = new http.Agent({ keepAlive: true, maxFreeSockets: 64 })
+const sharedHttpsAgent = new https.Agent({
+  keepAlive: true,
+  maxFreeSockets: 64,
+})
+
+// 代理 Agent 按代理地址缓存复用（tunnel agent 每请求新建会泄漏 socket 与监听器）
+const proxyAgentCache = new Map()
+const getProxyAgents = (proxy) => {
+  if (proxyAgentCache.has(proxy)) return proxyAgentCache.get(proxy)
+  let agents
+  if (proxy.indexOf('pac') > -1) {
+    agents = { httpAgent: new PacProxyAgent(proxy), httpsAgent: new PacProxyAgent(proxy) }
+  } else {
+    const purl = new URL(proxy)
+    if (!purl.hostname) return null
+    const agent = tunnel.httpsOverHttp({
+      proxy: { host: purl.hostname, port: purl.port || 80 },
+    })
+    agents = { httpAgent: agent, httpsAgent: agent }
+  }
+  proxyAgentCache.set(proxy, agents)
+  return agents
+}
+
 const USER_AGENT_POOLS = {
   mobile: [
     // iOS 13.5.1 14.0 beta with safari
@@ -144,31 +171,20 @@ const createRequest = (method, url, data = {}, options) => {
       url: url,
       headers: headers,
       data: new URLSearchParams(data).toString(),
-      httpAgent: new http.Agent({ keepAlive: true }),
-      httpsAgent: new https.Agent({ keepAlive: true }),
+      httpAgent: sharedHttpAgent,
+      httpsAgent: sharedHttpsAgent,
     }
 
     if (options.crypto === 'eapi') settings.encoding = null
 
     if (options.proxy) {
-      if (options.proxy.indexOf('pac') > -1) {
-        settings.httpAgent = new PacProxyAgent(options.proxy)
-        settings.httpsAgent = new PacProxyAgent(options.proxy)
+      const agents = getProxyAgents(options.proxy)
+      if (agents) {
+        settings.httpAgent = agents.httpAgent
+        settings.httpsAgent = agents.httpsAgent
+        settings.proxy = false
       } else {
-        const purl = new URL(options.proxy)
-        if (purl.hostname) {
-          const agent = tunnel.httpsOverHttp({
-            proxy: {
-              host: purl.hostname,
-              port: purl.port || 80,
-            },
-          })
-          settings.httpsAgent = agent
-          settings.httpAgent = agent
-          settings.proxy = false
-        } else {
-          console.error('代理配置无效,不使用代理')
-        }
+        console.error('代理配置无效,不使用代理')
       }
     } else {
       settings.proxy = false
