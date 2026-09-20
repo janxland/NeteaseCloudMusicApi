@@ -1,5 +1,11 @@
-const { DEVICE_COOKIE } = require('../util/client-profile')
-
+/**
+ * 扫码轮询。
+ *
+ * 必须沿用浏览器 cookie 通道：网易云在扫码后下发会话 cookie（实测 802 响应
+ * 比"空 cookie 的 802"多出 70 字节），802 → 803 的状态迁移靠它延续；阻断
+ * 该通道会让轮询永久停在"待确认"。设备身份则不受影响 —— request 层会无条件
+ * 用部署级常量覆盖 _ntes_nuid / NMTID，客户端传什么都不会造成身份漂移。
+ */
 module.exports = async (query, request) => {
   const data = {
     key: query.key,
@@ -12,7 +18,7 @@ module.exports = async (query, request) => {
       data,
       {
         crypto: 'weapi',
-        cookie: DEVICE_COOKIE,
+        cookie: query.cookie,
         proxy: query.proxy,
         realIP: query.realIP,
       },

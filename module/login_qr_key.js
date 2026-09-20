@@ -1,5 +1,3 @@
-const { DEVICE_COOKIE } = require('../util/client-profile')
-
 module.exports = async (query, request) => {
   const data = {
     type: 1,
@@ -10,7 +8,7 @@ module.exports = async (query, request) => {
     data,
     {
       crypto: 'weapi',
-      cookie: DEVICE_COOKIE,
+      cookie: query.cookie,
       proxy: query.proxy,
       realIP: query.realIP,
     },

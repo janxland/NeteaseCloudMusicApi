@@ -6,7 +6,6 @@ const packageJSON = require('./package.json')
 const exec = require('child_process').exec
 const cache = require('./util/apicache').middleware
 const { cachePolicy, cacheKeyOf } = require('./util/cache-policy')
-const { shouldEchoCookies } = require('./util/response-policy')
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
@@ -303,7 +302,8 @@ async function consturctServer(moduleDefs) {
         req.body,
         req.files,
       )
-      const echoCookies = shouldEchoCookies(req.baseUrl, query)
+      // 上游行为：扫码链路的会话 cookie 靠 Set-Cookie 回写延续，不可阻断
+      const echoCookies = !query.noCookie
 
       try {
         const moduleResponse = await moduleDef.module(query, (...params) => {

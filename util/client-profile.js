@@ -28,21 +28,6 @@ const DEVICE = Object.freeze({
   forwardRealIp: device.forwardRealIp === true,
 })
 
-/**
- * 扫码链路的固定身份。
- *
- * 扫码只需要 key，但网易云对这两个接口同样逐请求校验设备与游客令牌：客户端
- * jar 里只要残留一个失效的 MUSIC_A，整条链路立刻被判风控（-462 验证挑战 /
- * 502），而轮询端并无分支可处理，于是永久停在"待确认"。故扫码链路不接入
- * 浏览器 cookie 通道，只使用这组部署级常量（anonymous_token 由 request
- * 统一回落到部署级值，不会取客户端传来的）。
- */
-const DEVICE_COOKIE = Object.freeze({
-  __remember_me: 'true',
-  NMTID: DEVICE.nmtid,
-  _ntes_nuid: DEVICE.ntesNuid,
-})
-
 // 决定账号归属的凭据。其余 cookie（NMTID/_ntes_nuid/__remember_me）随请求波动，
 // 纳入身份会让同一账号分裂、纳入缓存键会让缓存永久失效。
 const CREDENTIAL_KEYS = ['MUSIC_U', 'MUSIC_A']
@@ -58,4 +43,4 @@ const accountFingerprint = (jar = {}) => {
     .slice(0, 16)
 }
 
-module.exports = { DEVICE, DEVICE_COOKIE, accountFingerprint }
+module.exports = { DEVICE, accountFingerprint }
