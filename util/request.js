@@ -61,6 +61,13 @@ const createRequest = (method, url, data = {}, options) => {
     }
     // headers['X-Real-IP'] = '118.88.88.88'
     if (typeof options.cookie === 'object') {
+      // 网易云账号层要求 Cookie 里带 os：缺失时 /nuser/account/get 回 account:null、
+      // /user/subcount 等回 code:301，即使 MUSIC_U 完全有效也一律「未登录」。
+      // 仅对携带真实凭据的请求补齐 —— 匿名态本就无账号（account:null 是正确答案），
+      // 给它补 os 只会平白改变其身份语义。只填不覆盖：调用方显式指定的值优先
+      // （如 module/user_comment_history.js 需要 os=ios 走移动端通道）。
+      const credentialed = Boolean(options.cookie.MUSIC_U || options.cookie.MUSIC_A)
+      if (credentialed && !options.cookie.os) options.cookie.os = DEVICE.os
       options.cookie = {
         ...options.cookie,
         __remember_me: true,

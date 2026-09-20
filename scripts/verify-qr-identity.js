@@ -121,6 +121,42 @@ server.listen(0, '127.0.0.1', async () => {
     assert.strictEqual(rErr.body.code, -462)
     ok('异常被兜底为 200 + 原始 code（前端不依赖异常分支）')
 
+    console.log('\n=== F) os 字段：账号层开关必须对带凭据的请求补齐 ===')
+    // 背景：Cookie 缺 os 时网易云账号层一律回 account:null / code:301，
+    // 即使 MUSIC_U 完全有效（能取到无损）也判「未登录」。
+    await request('POST', url, {}, { cookie: { MUSIC_U: 'valid-token' } })
+    const withCred = parseCookie(captured.cookie)
+    assert.strictEqual(
+      withCred.os,
+      DEVICE.os,
+      '带凭据的请求必须补上 os，否则账号域接口全判未登录',
+    )
+    ok(`带凭据请求自动补 os=${DEVICE.os} → /user/account、/user/subcount 等恢复`)
+
+    // 只填不覆盖：模块显式指定的 os 优先（user_comment_history 依赖 os=ios）
+    await request('POST', url, {}, { cookie: { MUSIC_U: 'valid-token', os: 'ios' } })
+    assert.strictEqual(
+      parseCookie(captured.cookie).os,
+      'ios',
+      '调用方显式指定的 os 不得被覆盖',
+    )
+    ok('调用方显式 os 优先（user_comment_history 的 os=ios 不被改坏）')
+
+    // 匿名态本就无账号，account:null 是正确答案，不得改变其身份语义
+    await request('POST', url, {}, { cookie: {} })
+    const guest = parseCookie(captured.cookie)
+    assert.strictEqual(guest.os, undefined, '匿名态不得注入 os')
+    assert.ok(guest.MUSIC_A, '匿名态仍走 anonymous_token')
+    ok('匿名态不注入 os（不改变原有身份语义）')
+
+    let historyOpts = null
+    await require('../module/user_comment_history')({ uid: '1', cookie: {} }, (m, u, d, o) => {
+      historyOpts = o
+      return Promise.resolve({ status: 200, body: { code: 200 }, cookie: [] })
+    })
+    assert.strictEqual(historyOpts.cookie.os, 'ios')
+    ok('user_comment_history 自带 os=ios 保持不变')
+
     console.log(`\n########## 机械验证: ${pass} 项全部通过 ##########`)
   } catch (e) {
     console.error('\n✗ 断言失败:', e.message)

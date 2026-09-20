@@ -24,6 +24,14 @@ const DEVICE = Object.freeze({
   userAgent: device.userAgent || '',
   ntesNuid: device.ntesNuid || derived('ntes_nuid'),
   nmtid: device.nmtid || derived('NMTID'),
+  // 账号层开关。Cookie 里缺 os 时，网易云的 /nuser/account/get、/w/nuser/account/get
+  // 一律返回 `account:null, profile:null`（等价「未登录」），/user/subcount、/vip/info、
+  // /playlist/mylike 之类更直接回 `code:301 需要登录` —— 与风控无关，纯粹是字段缺失。
+  // 上游各 module 自扫门前雪（user_comment_history 自己设 os=ios），所以只有「恰好在
+  // 自己模块里设了 os」的接口能用，其余的即使 cookie 完全有效也一律失败。
+  // 它和 userAgent/NMTID 一样是部署级设备身份，故收敛到这里统一补齐。
+  // 取值须与 userAgent 自洽：本部署用 PC 端 UA，因此默认 pc。
+  os: device.os || 'pc',
   // 默认不伪造来源 IP：两条链路都让网易云看到同一出口 IP，比互相矛盾的假值更干净
   forwardRealIp: device.forwardRealIp === true,
 })
