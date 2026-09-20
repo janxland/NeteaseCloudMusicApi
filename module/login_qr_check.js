@@ -1,3 +1,5 @@
+const { DEVICE_COOKIE } = require('../util/client-profile')
+
 module.exports = async (query, request) => {
   const data = {
     key: query.key,
@@ -10,7 +12,7 @@ module.exports = async (query, request) => {
       data,
       {
         crypto: 'weapi',
-        cookie: query.cookie,
+        cookie: DEVICE_COOKIE,
         proxy: query.proxy,
         realIP: query.realIP,
       },
@@ -19,7 +21,9 @@ module.exports = async (query, request) => {
       status: 200,
       body: {
         ...result.body,
-        cookie: result.cookie.join(';'),
+        // ';;' 是前端 setCookies 的分隔约定：803 必须让每个 Set-Cookie 各自
+        // 落一次 document.cookie，否则只有第一个（且未必是 MUSIC_U）生效。
+        cookie: result.cookie.join(';;'),
       },
       cookie: result.cookie,
     }
