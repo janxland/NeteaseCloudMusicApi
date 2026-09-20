@@ -6,12 +6,15 @@ module.exports = {
   },
   cookieToJson(cookie) {
     if (!cookie) return {}
-    let cookieArr = cookie.split(';')
-    let obj = {}
-    cookieArr.forEach((i) => {
-      let arr = i.split('=')
-      obj[arr[0]] = arr[1]
-    })
+    // 按首个 '=' 切分：base64 值本身可能含 '='，用 split('=')[1] 会截断
+    const obj = {}
+    for (const segment of String(cookie).split(';')) {
+      const idx = segment.indexOf('=')
+      if (idx <= 0) continue
+      const name = segment.slice(0, idx).trim()
+      const value = segment.slice(idx + 1).trim()
+      if (name) obj[name] = value
+    }
     return obj
   },
   getRandom(num) {

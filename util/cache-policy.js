@@ -9,6 +9,9 @@ const UNCACHEABLE = [
   /^\/user\//,
   /^\/daily_signin/,
   /^\/puppeteer/,
+  // 凭据读写必须实时：缓存会让「刚粘贴的 cookie」延迟生效，
+  // 也会让 DELETE 清空后仍读到旧凭据
+  /^\/netease\//,
 ]
 
 // apicache 在回写与命中两侧都会调用此开关，据此彻底旁路

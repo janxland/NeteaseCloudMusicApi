@@ -249,6 +249,66 @@ async function consturctServer(moduleDefs) {
     }
   })
 
+  // 首页取歌凭据：由 ncm-api 自持，与播放器登录解耦。
+  // 只接受能自证归属的凭据 —— 回源 /user/account 校验 uid，其余一律拒绝；
+  // 因此该接口即使公开，也无法把他人的 cookie 写进来劫持首页取歌。
+  const credentialStore = require('./util/credential-store')
+  const userAccountModule = require('./module/user_account')
+  const OWNER_UID = String(process.env.NETEASE_OWNER_UID || '270496477')
+
+  app.get('/netease/credential', (req, res) => {
+    const entry = credentialStore.read()
+    if (!entry || !entry.cookie) {
+      res.status(404).type('text/plain').send('')
+      return
+    }
+    res.type('text/plain').send(entry.cookie)
+  })
+
+  app.post('/netease/credential', async (req, res) => {
+    const cookie =
+      typeof req.body?.cookie === 'string' ? req.body.cookie.trim() : ''
+    if (!/MUSIC_U=/.test(cookie)) {
+      res.status(400).json({ ok: false, reason: 'missing_music_u' })
+      return
+    }
+    try {
+      const { body } = await userAccountModule(
+        { cookie: cookieToJson(cookie) },
+        request,
+      )
+      const uid = body && body.profile && body.profile.userId
+      if (String(uid) !== OWNER_UID) {
+        res
+          .status(403)
+          .json({ ok: false, reason: 'not_owner', uid: uid ?? null })
+        return
+      }
+      const entry = credentialStore.write({
+        cookie,
+        uid,
+        nickname: body.profile.nickname,
+        source: 'player-login',
+      })
+      res.json({
+        ok: true,
+        uid: entry.uid,
+        nickname: entry.nickname,
+        updatedAt: entry.updatedAt,
+      })
+    } catch (error) {
+      res.status(502).json({
+        ok: false,
+        reason: 'verify_failed',
+        msg: String((error && error.message) || error),
+      })
+    }
+  })
+
+  app.delete('/netease/credential', (req, res) => {
+    res.json({ ok: credentialStore.clear() })
+  })
+
   // 解灰提供方与路由解耦：惰性加载，且必须兜底 —— 原实现的 .then 无 catch，
   // 上游 reject 会冒泡成 unhandledRejection，量大时拖慢实例。
   const UNBLOCK_SOURCES = {
