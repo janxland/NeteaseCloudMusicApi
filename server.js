@@ -6,6 +6,7 @@ const packageJSON = require('./package.json')
 const exec = require('child_process').exec
 const cache = require('./util/apicache').middleware
 const { cachePolicy, cacheKeyOf } = require('./util/cache-policy')
+const { shouldEchoCookies } = require('./util/response-policy')
 const { cookieToJson } = require('./util/index')
 const fileUpload = require('express-fileupload')
 const decode = require('safe-decode-uri-component')
@@ -15,15 +16,6 @@ const { kugou } = require('./util/kugou')
 // LOG_REQUESTS=1 时打印每条请求的 [OK] 日志
 const LOG_REQUESTS = process.env.LOG_REQUESTS === '1'
 const CACHE_TTL = '2 minutes'
-/**
- * 不下发 Set-Cookie 的路由前缀。
- *
- * 扫码链路的响应 cookie 属于"网易云设备会话"，回写浏览器只会污染 jar：
- * 下一次轮询或取歌会带着它被判风控（-462 验证挑战 / 502），而扫码轮询端
- * 没有对应分支，于是永久停在"待确认"。登录结果由 body.cookie 下发，
- * 客户端不依赖 Set-Cookie，故这些路由关闭回写。
- */
-const NO_SET_COOKIE_ROUTES = ['/login/qr/']
 /**
  * The version check result.
  * @readonly
@@ -311,6 +303,7 @@ async function consturctServer(moduleDefs) {
         req.body,
         req.files,
       )
+      const echoCookies = shouldEchoCookies(req.baseUrl, query)
 
       try {
         const moduleResponse = await moduleDef.module(query, (...params) => {
