@@ -1,0 +1,3289 @@
+{
+  "generatedAt": "2026-09-20T17:12:13.711Z",
+  "base": "http://localhost:3000",
+  "total": 281,
+  "tiers": {
+    "P0": 186,
+    "P1": 81,
+    "P2": 14
+  },
+  "cases": [
+    {
+      "route": "/activate/init/profile",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "nickname": "test"
+      },
+      "desc": "初始化名字"
+    },
+    {
+      "route": "/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "专辑内容"
+    },
+    {
+      "route": "/album/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑详情",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/album/detail/dynamic",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "专辑动态信息"
+    },
+    {
+      "route": "/album/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "area": "ALL",
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑-新碟上架"
+    },
+    {
+      "route": "/album/list/style",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "area": "ALL",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑-语种风格馆",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/album/new",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "area": "ALL",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "全部新碟"
+    },
+    {
+      "route": "/album/newest",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "最新专辑"
+    },
+    {
+      "route": "/album/songsaleboard",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "year": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑&数字单曲-榜单",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/album/sub",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏/取消收藏专辑"
+    },
+    {
+      "route": "/album/sublist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "已收藏专辑列表"
+    },
+    {
+      "route": "/artist/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手专辑列表"
+    },
+    {
+      "route": "/artist/desc",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手介绍"
+    },
+    {
+      "route": "/artist/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/artist/fans",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手粉丝"
+    },
+    {
+      "route": "/artist/follow/count",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手粉丝数量"
+    },
+    {
+      "route": "/artist/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "initial": "A",
+        "offset": 0,
+        "limit": 30,
+        "type": 1,
+        "area": "ALL",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手分类"
+    },
+    {
+      "route": "/artist/mv",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手相关MV"
+    },
+    {
+      "route": "/artist/new/mv",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "before": 0
+      },
+      "desc": ""
+    },
+    {
+      "route": "/artist/new/song",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "before": 0
+      },
+      "desc": ""
+    },
+    {
+      "route": "/artist/songs",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "order": "hot",
+        "offset": 0,
+        "limit": 30
+      },
+      "desc": ""
+    },
+    {
+      "route": "/artist/sub",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏与取消收藏歌手"
+    },
+    {
+      "route": "/artist/sublist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "关注歌手列表"
+    },
+    {
+      "route": "/artist/top/song",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手热门 50 首歌曲"
+    },
+    {
+      "route": "/artist/video",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "size": 20,
+        "order": "hot",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手相关视频",
+      "baselineStatus": 502,
+      "note": "重构前实测 HTTP 502（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/artists",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手单曲"
+    },
+    {
+      "route": "/audio/match",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {},
+      "desc": ""
+    },
+    {
+      "route": "/avatar/upload",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/banner",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "首页轮播图"
+    },
+    {
+      "route": "/batch",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "批量请求接口"
+    },
+    {
+      "route": "/calendar",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "startTime": 0,
+        "endTime": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/captcha/sent",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "phone": ""
+      },
+      "desc": "发送验证码"
+    },
+    {
+      "route": "/captcha/verify",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "phone": "",
+        "captcha": ""
+      },
+      "desc": "校验验证码"
+    },
+    {
+      "route": "/cellphone/existence/check",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "phone": "",
+        "countrycode": 10,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "检测手机号码是否已注册"
+    },
+    {
+      "route": "/check/music",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "br": 999000,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌曲可用性"
+    },
+    {
+      "route": "/cloud",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "songFile": ""
+      },
+      "desc": "命令行上传没有md5和size信息,需要填充"
+    },
+    {
+      "route": "/cloud/match",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "uid": 32953014,
+        "sid": 32311,
+        "asid": 32311
+      },
+      "desc": ""
+    },
+    {
+      "route": "/cloudsearch",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "keywords": "海阔天空",
+        "type": 1,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "搜索"
+    },
+    {
+      "route": "/comment",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "t": "",
+        "type": 1,
+        "id": 347230,
+        "threadId": 347230,
+        "content": "test",
+        "commentId": 347230
+      },
+      "desc": "发送与删除评论"
+    },
+    {
+      "route": "/comment/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "专辑评论"
+    },
+    {
+      "route": "/comment/dj",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 3470602,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "电台评论"
+    },
+    {
+      "route": "/comment/event",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "before": 0,
+        "threadId": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "获取动态评论"
+    },
+    {
+      "route": "/comment/floor",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "parentCommentId": 347230,
+        "id": 347230,
+        "time": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/comment/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "id": 347230,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "热门评论"
+    },
+    {
+      "route": "/comment/hug/list",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "type": 1,
+        "sid": 347230,
+        "uid": 32953014,
+        "cid": 347230,
+        "page": 1,
+        "pageSize": 10
+      },
+      "desc": ""
+    },
+    {
+      "route": "/comment/like",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "type": 1,
+        "id": 347230,
+        "cid": 347230,
+        "threadId": 347230
+      },
+      "desc": "点赞与取消点赞评论"
+    },
+    {
+      "route": "/comment/music",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "歌曲评论"
+    },
+    {
+      "route": "/comment/mv",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "MV评论"
+    },
+    {
+      "route": "/comment/new",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "id": 347230,
+        "pageSize": 10,
+        "pageNo": 10,
+        "sortType": ""
+      },
+      "desc": "评论"
+    },
+    {
+      "route": "/comment/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "歌单评论"
+    },
+    {
+      "route": "/comment/video",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "limit": 30,
+        "offset": 0,
+        "before": 0
+      },
+      "desc": "视频评论"
+    },
+    {
+      "route": "/countries/code/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "国家编码列表"
+    },
+    {
+      "route": "/daily_signin",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "签到"
+    },
+    {
+      "route": "/digitalAlbum/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑详情",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/digitalAlbum/ordering",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "payment": "",
+        "id": 32311,
+        "quantity": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "购买数字专辑",
+      "baselineStatus": 502,
+      "note": "重构前实测 HTTP 502（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/digitalAlbum/purchased",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "我的数字专辑"
+    },
+    {
+      "route": "/digitalAlbum/sales",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "ids": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑销量"
+    },
+    {
+      "route": "/dj/banner",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {},
+      "desc": "电台banner"
+    },
+    {
+      "route": "/dj/category/excludehot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台非热门类型"
+    },
+    {
+      "route": "/dj/category/recommend",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台推荐类型"
+    },
+    {
+      "route": "/dj/catelist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台分类列表"
+    },
+    {
+      "route": "/dj/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "rid": 3470602,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台详情",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/dj/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热门电台"
+    },
+    {
+      "route": "/dj/paygift",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "付费电台"
+    },
+    {
+      "route": "/dj/personalize/recommend",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台个性推荐"
+    },
+    {
+      "route": "/dj/program",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "rid": 32311,
+        "limit": 30,
+        "offset": 0,
+        "asc": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台节目列表"
+    },
+    {
+      "route": "/dj/program/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台节目详情",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/dj/program/toplist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台节目榜"
+    },
+    {
+      "route": "/dj/program/toplist/hours",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台24小时节目榜"
+    },
+    {
+      "route": "/dj/radio/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "cateId": 3470602,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "类别热门电台"
+    },
+    {
+      "route": "/dj/recommend",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "精选电台"
+    },
+    {
+      "route": "/dj/recommend/type",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "精选电台分类"
+    },
+    {
+      "route": "/dj/sub",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "rid": 3470602,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "订阅与取消电台"
+    },
+    {
+      "route": "/dj/sublist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "订阅电台列表"
+    },
+    {
+      "route": "/dj/subscriber",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "time": 0,
+        "id": 3470602,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台详情"
+    },
+    {
+      "route": "/dj/today/perfered",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "page": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台今日优选"
+    },
+    {
+      "route": "/dj/toplist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "新晋电台榜/热门电台榜"
+    },
+    {
+      "route": "/dj/toplist/hours",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台24小时主播榜"
+    },
+    {
+      "route": "/dj/toplist/newcomer",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台新人榜"
+    },
+    {
+      "route": "/dj/toplist/pay",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "付费精品"
+    },
+    {
+      "route": "/dj/toplist/popular",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "电台最热主播榜"
+    },
+    {
+      "route": "/event",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "pagesize": 10,
+        "lasttime": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "动态"
+    },
+    {
+      "route": "/event/del",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "evId": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "删除动态",
+      "baselineStatus": 403,
+      "note": "重构前实测 HTTP 403（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/event/forward",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "forwards": "",
+        "evId": 32311,
+        "uid": 32953014
+      },
+      "desc": "转发动态"
+    },
+    {
+      "route": "/fm_trash",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32311,
+        "time": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "垃圾桶"
+    },
+    {
+      "route": "/follow",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "id": 32311
+      },
+      "desc": "关注与取消关注用户"
+    },
+    {
+      "route": "/history/recommend/songs",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {},
+      "desc": "历史每日推荐歌曲"
+    },
+    {
+      "route": "/history/recommend/songs/detail",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {},
+      "desc": "历史每日推荐歌曲详情"
+    },
+    {
+      "route": "/homepage/block/page",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "cursor": ""
+      },
+      "desc": "首页-发现 block page"
+    },
+    {
+      "route": "/homepage/dragon/ball",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {},
+      "desc": "首页-发现 dragon ball"
+    },
+    {
+      "route": "/hot/topic",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热门话题"
+    },
+    {
+      "route": "/hug/comment",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "type": 1,
+        "sid": 347230,
+        "uid": 32953014,
+        "cid": 347230
+      },
+      "desc": ""
+    },
+    {
+      "route": "/inner/version",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/like",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "like": "",
+        "id": 347230
+      },
+      "desc": "红心与取消红心歌曲"
+    },
+    {
+      "route": "/likelist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "喜欢的歌曲(无序)"
+    },
+    {
+      "route": "/listentogether/end",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 结束房间"
+    },
+    {
+      "route": "/listentogether/heatbeat",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 32311,
+        "songId": 347230,
+        "playStatus": "",
+        "progress": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 发送心跳",
+      "baselineStatus": 502,
+      "note": "重构前实测 HTTP 502（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/listentogether/play/command",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 32311,
+        "commandType": "",
+        "playStatus": "",
+        "formerSongId": 347230,
+        "targetSongId": 347230,
+        "clientSeq": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 发送播放状态"
+    },
+    {
+      "route": "/listentogether/room/check",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 房间情况"
+    },
+    {
+      "route": "/listentogether/room/create",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听创建房间"
+    },
+    {
+      "route": "/listentogether/status",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听状态"
+    },
+    {
+      "route": "/listentogether/sync/list/command",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 32311,
+        "commandType": "",
+        "userId": 32953014,
+        "version": "",
+        "randomList": "",
+        "displayList": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 更新播放列表"
+    },
+    {
+      "route": "/listentogether/sync/playlist/get",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "roomId": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "一起听 当前列表获取"
+    },
+    {
+      "route": "/login",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "email": "",
+        "password": ""
+      },
+      "desc": "邮箱登录"
+    },
+    {
+      "route": "/login/cellphone",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "phone": "",
+        "countrycode": 10,
+        "captcha": "",
+        "password": ""
+      },
+      "desc": "手机登录"
+    },
+    {
+      "route": "/login/qr/check",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "key": ""
+      },
+      "desc": "';;' 是前端 setCookies 的分隔约定：803 必须让每个 Set-Cookie 各自"
+    },
+    {
+      "route": "/login/qr/create",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "code200",
+      "params": {
+        "key": "",
+        "qrimg": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "from": [
+        {
+          "route": "/login/qr/key",
+          "pick": "unikey",
+          "as": "key"
+        }
+      ]
+    },
+    {
+      "route": "/login/qr/key",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/login/refresh",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {},
+      "desc": "登录刷新"
+    },
+    {
+      "route": "/login/status",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {},
+      "desc": ""
+    },
+    {
+      "route": "/logout",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {},
+      "desc": "退出登录"
+    },
+    {
+      "route": "/lyric",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230
+      },
+      "desc": "歌词"
+    },
+    {
+      "route": "/lyric/new",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "新版歌词 - 包含逐字歌词"
+    },
+    {
+      "route": "/mlog/music/rcmd",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "mvid": 5436712,
+        "limit": 30,
+        "songid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌曲相关视频"
+    },
+    {
+      "route": "/mlog/to/video",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "将mlog id转为video id"
+    },
+    {
+      "route": "/mlog/url",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "mlog链接"
+    },
+    {
+      "route": "/msg/comments",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "before": 0,
+        "limit": 30,
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "评论"
+    },
+    {
+      "route": "/msg/forwards",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "@我"
+    },
+    {
+      "route": "/msg/notices",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "lasttime": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "通知"
+    },
+    {
+      "route": "/msg/private",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "私信"
+    },
+    {
+      "route": "/msg/private/history",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "uid": 32953014,
+        "limit": 30,
+        "before": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "私信内容"
+    },
+    {
+      "route": "/msg/recentcontact",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "最近联系"
+    },
+    {
+      "route": "/musician/cloudbean",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "账号云豆数"
+    },
+    {
+      "route": "/musician/cloudbean/obtain",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 347230,
+        "period": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "领取云豆"
+    },
+    {
+      "route": "/musician/data/overview",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "音乐人数据概况"
+    },
+    {
+      "route": "/musician/play/trend",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "startTime": 0,
+        "endTime": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "音乐人歌曲播放趋势"
+    },
+    {
+      "route": "/musician/sign",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "音乐人签到"
+    },
+    {
+      "route": "/musician/tasks",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "获取音乐人任务"
+    },
+    {
+      "route": "/musician/tasks/new",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "获取音乐人任务"
+    },
+    {
+      "route": "/mv/all",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "area": "ALL",
+        "type": 1,
+        "order": "hot",
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "全部MV"
+    },
+    {
+      "route": "/mv/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "mvid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "MV详情"
+    },
+    {
+      "route": "/mv/detail/info",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "mvid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "MV 点赞转发评论数数据"
+    },
+    {
+      "route": "/mv/exclusive/rcmd",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "网易出品"
+    },
+    {
+      "route": "/mv/first",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "offset": 0,
+        "area": "ALL",
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "最新MV"
+    },
+    {
+      "route": "/mv/sub",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "mvid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏与取消收藏MV"
+    },
+    {
+      "route": "/mv/sublist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "已收藏MV列表"
+    },
+    {
+      "route": "/mv/url",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "MV链接"
+    },
+    {
+      "route": "/nickname/check",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "nickname": "test",
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/personal_fm",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "私人FM",
+      "looseSignature": true
+    },
+    {
+      "route": "/personalized",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "推荐歌单"
+    },
+    {
+      "route": "/personalized/djprogram",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "推荐电台"
+    },
+    {
+      "route": "/personalized/mv",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "推荐MV"
+    },
+    {
+      "route": "/personalized/newsong",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "areaId": 347230
+      },
+      "desc": "推荐新歌"
+    },
+    {
+      "route": "/personalized/privatecontent",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "独家放送"
+    },
+    {
+      "route": "/personalized/privatecontent/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "独家放送列表"
+    },
+    {
+      "route": "/pl/count",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "数字专辑-新碟上架"
+    },
+    {
+      "route": "/playlist/catlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "全部歌单分类"
+    },
+    {
+      "route": "/playlist/cover/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "imgFile": "",
+        "id": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "baselineStatus": 400,
+      "note": "重构前实测 HTTP 400（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/playlist/create",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "name": "test",
+        "privacy": "",
+        "type": 1
+      },
+      "desc": "创建歌单"
+    },
+    {
+      "route": "/playlist/delete",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 24381616
+      },
+      "desc": "删除歌单"
+    },
+    {
+      "route": "/playlist/desc/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "desc": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "更新歌单描述"
+    },
+    {
+      "route": "/playlist/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "s": "海阔天空",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌单详情"
+    },
+    {
+      "route": "/playlist/detail/dynamic",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "s": "海阔天空",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "初始化名字"
+    },
+    {
+      "route": "/playlist/highquality/tags",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "精品歌单 tags"
+    },
+    {
+      "route": "/playlist/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热门歌单分类"
+    },
+    {
+      "route": "/playlist/mylike",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "time": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/playlist/name/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "name": "test",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "更新歌单名"
+    },
+    {
+      "route": "/playlist/order/update",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "ids": 24381616
+      },
+      "desc": "编辑歌单顺序"
+    },
+    {
+      "route": "/playlist/privacy",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "公开隐私歌单"
+    },
+    {
+      "route": "/playlist/subscribe",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "t": "",
+        "id": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏与取消收藏歌单",
+      "baselineStatus": 403,
+      "note": "重构前实测 HTTP 403（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/playlist/subscribers",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌单收藏者"
+    },
+    {
+      "route": "/playlist/tags/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "tags": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "更新歌单标签"
+    },
+    {
+      "route": "/playlist/track/add",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "ids": 24381616,
+        "pid": 24381616
+      },
+      "desc": ""
+    },
+    {
+      "route": "/playlist/track/all",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "s": "海阔天空",
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "通过传过来的歌单id拿到所有歌曲数据",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/playlist/track/delete",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "ids": 24381616,
+        "id": 24381616
+      },
+      "desc": "收藏单曲到歌单 从歌单删除歌曲"
+    },
+    {
+      "route": "/playlist/tracks",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "tracks": "",
+        "op": "",
+        "pid": 24381616
+      },
+      "desc": "收藏单曲到歌单 从歌单删除歌曲"
+    },
+    {
+      "route": "/playlist/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "name": "test"
+      },
+      "desc": "编辑歌单"
+    },
+    {
+      "route": "/playlist/update/playcount",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌单打卡"
+    },
+    {
+      "route": "/playlist/video/recent",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/playmode/intelligence/list",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32311,
+        "pid": 32311,
+        "sid": 32311,
+        "count": 10,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "智能播放"
+    },
+    {
+      "route": "/program/recommend",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "推荐节目"
+    },
+    {
+      "route": "/rebind",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "captcha": "",
+        "phone": "",
+        "oldcaptcha": ""
+      },
+      "desc": "更换手机"
+    },
+    {
+      "route": "/recommend/resource",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "每日推荐歌单"
+    },
+    {
+      "route": "/recommend/songs",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {},
+      "desc": "每日推荐歌曲"
+    },
+    {
+      "route": "/record/recent/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/record/recent/dj",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/record/recent/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/record/recent/song",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/record/recent/video",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/record/recent/voice",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/register/anonimous",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {},
+      "desc": "游客登录"
+    },
+    {
+      "route": "/register/cellphone",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "captcha": "",
+        "phone": "",
+        "password": "",
+        "nickname": "test",
+        "countrycode": 10
+      },
+      "desc": "注册账号"
+    },
+    {
+      "route": "/related/allvideo",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相关视频"
+    },
+    {
+      "route": "/related/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相关歌单"
+    },
+    {
+      "route": "/resource/like",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "type": 1,
+        "id": 347230,
+        "threadId": 347230
+      },
+      "desc": "点赞与取消点赞资源"
+    },
+    {
+      "route": "/scrobble",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "sourceid": 347230,
+        "time": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "听歌打卡"
+    },
+    {
+      "route": "/search",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "keywords": "海阔天空",
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "搜索"
+    },
+    {
+      "route": "/search/default",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "默认搜索关键词"
+    },
+    {
+      "route": "/search/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热门搜索"
+    },
+    {
+      "route": "/search/hot/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热搜列表"
+    },
+    {
+      "route": "/search/multimatch",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "keywords": "海阔天空",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "多类型搜索"
+    },
+    {
+      "route": "/search/suggest",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "keywords": "海阔天空",
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "搜索建议"
+    },
+    {
+      "route": "/send/album",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32311,
+        "msg": "test",
+        "user_ids": 32311
+      },
+      "desc": "私信专辑"
+    },
+    {
+      "route": "/send/playlist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "playlist": "",
+        "msg": "test",
+        "user_ids": 24381616
+      },
+      "desc": "私信歌单"
+    },
+    {
+      "route": "/send/song",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 347230,
+        "msg": "test",
+        "user_ids": 32953014
+      },
+      "desc": "私信歌曲"
+    },
+    {
+      "route": "/send/text",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "msg": "test",
+        "user_ids": 32953014
+      },
+      "desc": "私信"
+    },
+    {
+      "route": "/setting",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "设置"
+    },
+    {
+      "route": "/share/resource",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "type": 1,
+        "msg": "test",
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "分享歌曲到动态"
+    },
+    {
+      "route": "/sheet/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "乐谱列表"
+    },
+    {
+      "route": "/sheet/preview",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "乐谱预览"
+    },
+    {
+      "route": "/sign/happy/info",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/signin/progress",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "moduleId": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "签到进度"
+    },
+    {
+      "route": "/simi/artist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相似歌手"
+    },
+    {
+      "route": "/simi/mv",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "mvid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相似MV"
+    },
+    {
+      "route": "/simi/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 24381616,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相似歌单"
+    },
+    {
+      "route": "/simi/song",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相似歌曲"
+    },
+    {
+      "route": "/simi/user",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32953014,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "相似用户"
+    },
+    {
+      "route": "/song/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "ids": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌曲详情"
+    },
+    {
+      "route": "/song/download/url",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "br": 999000,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "获取客户端歌曲下载链接"
+    },
+    {
+      "route": "/song/order/update",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "pid": 347230,
+        "ids": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "更新歌曲顺序"
+    },
+    {
+      "route": "/song/purchased",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "已购单曲"
+    },
+    {
+      "route": "/song/unblock",
+      "method": "GET",
+      "tier": "P2",
+      "expect": "manual",
+      "params": {
+        "id": 347230,
+        "br": 999000
+      },
+      "desc": "歌曲解灰"
+    },
+    {
+      "route": "/song/url",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "br": 999000
+      },
+      "desc": "歌曲链接"
+    },
+    {
+      "route": "/song/url/v1",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "level": "standard"
+      },
+      "desc": "歌曲链接 - v1"
+    },
+    {
+      "route": "/song/wiki/summary",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "音乐百科基础信息"
+    },
+    {
+      "route": "/style/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "size": 20,
+        "tagId": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风-专辑"
+    },
+    {
+      "route": "/style/artist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "size": 20,
+        "tagId": 5781,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风-歌手"
+    },
+    {
+      "route": "/style/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "tagId": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风详情"
+    },
+    {
+      "route": "/style/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风列表"
+    },
+    {
+      "route": "/style/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "size": 20,
+        "tagId": 24381616,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风-歌单"
+    },
+    {
+      "route": "/style/preference",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风偏好"
+    },
+    {
+      "route": "/style/song",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "size": 20,
+        "tagId": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "曲风-歌曲"
+    },
+    {
+      "route": "/top/album",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "area": "ALL",
+        "limit": 30,
+        "offset": 0,
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "新碟上架"
+    },
+    {
+      "route": "/top/artists",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "热门歌手"
+    },
+    {
+      "route": "/top/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "idx": "",
+        "id": 32311
+      },
+      "desc": "排行榜"
+    },
+    {
+      "route": "/top/mv",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "area": "ALL",
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "MV排行榜"
+    },
+    {
+      "route": "/top/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "cat": "全部",
+        "order": "hot",
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "分类歌单"
+    },
+    {
+      "route": "/top/playlist/highquality",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "cat": "全部",
+        "limit": 30,
+        "before": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "精品歌单"
+    },
+    {
+      "route": "/top/song",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "新歌速递"
+    },
+    {
+      "route": "/topic/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "actid": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/topic/detail/event/hot",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "actid": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/topic/sublist",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏的专栏"
+    },
+    {
+      "route": "/toplist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "所有榜单介绍"
+    },
+    {
+      "route": "/toplist/artist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "歌手榜"
+    },
+    {
+      "route": "/toplist/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "所有榜单内容摘要"
+    },
+    {
+      "route": "/user/account",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/user/audio",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "用户创建的电台"
+    },
+    {
+      "route": "/user/binding",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/user/bindingcellphone",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "phone": "",
+        "countrycode": 10,
+        "captcha": "",
+        "password": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/user/cloud",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "云盘数据"
+    },
+    {
+      "route": "/user/cloud/del",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "云盘歌曲删除"
+    },
+    {
+      "route": "/user/cloud/detail",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "云盘数据详情"
+    },
+    {
+      "route": "/user/comment/history",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "uid": 32953014,
+        "time": 0
+      },
+      "desc": ""
+    },
+    {
+      "route": "/user/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "用户详情"
+    },
+    {
+      "route": "/user/dj",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "uid": 3470602,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "用户电台节目"
+    },
+    {
+      "route": "/user/event",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "lasttime": 0,
+        "limit": 30,
+        "uid": 32953014
+      },
+      "desc": "用户动态"
+    },
+    {
+      "route": "/user/followeds",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "uid": 32953014,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "关注TA的人(粉丝)"
+    },
+    {
+      "route": "/user/follows",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "uid": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "TA关注的人(关注)"
+    },
+    {
+      "route": "/user/level",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "类别热门电台"
+    },
+    {
+      "route": "/user/playlist",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "uid": 24381616,
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "用户歌单"
+    },
+    {
+      "route": "/user/record",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "uid": 32953014,
+        "type": 1,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "听歌排行",
+      "baselineStatus": 400,
+      "note": "重构前实测 HTTP 400（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/user/replacephone",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "phone": "",
+        "captcha": "",
+        "oldcaptcha": "",
+        "countrycode": 10,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/user/subcount",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏计数"
+    },
+    {
+      "route": "/user/update",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "birthday": "",
+        "city": "",
+        "gender": "",
+        "nickname": "test",
+        "province": "",
+        "signature": "",
+        "realIP": "116.25.146.177"
+      },
+      "desc": "编辑用户信息",
+      "baselineStatus": 403,
+      "note": "重构前实测 HTTP 403（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/video/category/list",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "offset": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频分类列表"
+    },
+    {
+      "route": "/video/detail",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频详情"
+    },
+    {
+      "route": "/video/detail/info",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "vid": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频点赞转发评论数数据"
+    },
+    {
+      "route": "/video/group",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 5436712,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频标签/分类下的视频"
+    },
+    {
+      "route": "/video/group/list",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频标签列表"
+    },
+    {
+      "route": "/video/sub",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "t": "",
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "收藏与取消收藏视频"
+    },
+    {
+      "route": "/video/timeline/all",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "全部视频列表"
+    },
+    {
+      "route": "/video/timeline/recommend",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "推荐视频"
+    },
+    {
+      "route": "/video/url",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "id": 5436712,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "视频链接"
+    },
+    {
+      "route": "/vip/growthpoint",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "会员成长值"
+    },
+    {
+      "route": "/vip/growthpoint/details",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "会员成长值领取记录"
+    },
+    {
+      "route": "/vip/growthpoint/get",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "ids": 32311,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "领取会员成长值",
+      "baselineStatus": 401,
+      "note": "重构前实测 HTTP 401（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/vip/info",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "获取 VIP 信息"
+    },
+    {
+      "route": "/vip/tasks",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "会员任务"
+    },
+    {
+      "route": "/vip/timemachine",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "startTime": 0,
+        "endTime": 0,
+        "limit": 30,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "黑胶时光机"
+    },
+    {
+      "route": "/weblog",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "操作记录"
+    },
+    {
+      "route": "/yunbei",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "/api/point/today/get"
+    },
+    {
+      "route": "/yunbei/expense",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/info",
+      "method": "GET",
+      "tier": "P0",
+      "expect": "http200",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": "",
+      "baselineStatus": 404,
+      "note": "重构前实测 HTTP 404（上游失效/缺参数，重构后需保持一致）"
+    },
+    {
+      "route": "/yunbei/rcmd/song",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "id": 347230,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "云贝推歌"
+    },
+    {
+      "route": "/yunbei/rcmd/song/history",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "size": 20,
+        "realIP": "116.25.146.177"
+      },
+      "desc": "云贝推歌历史记录"
+    },
+    {
+      "route": "/yunbei/receipt",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "limit": 30,
+        "offset": 0,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/sign",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/task/finish",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "userTaskId": 32953014,
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/tasks",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/tasks/todo",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    },
+    {
+      "route": "/yunbei/today",
+      "method": "GET",
+      "tier": "P1",
+      "expect": "loginRequired",
+      "params": {
+        "realIP": "116.25.146.177"
+      },
+      "desc": ""
+    }
+  ]
+}

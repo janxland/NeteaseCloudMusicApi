@@ -1,0 +1,17 @@
+import type { ModuleQuery, ModuleRequest } from '../types'
+
+// 所有榜单介绍
+
+export default (query: ModuleQuery, request: ModuleRequest) => {
+  return request(
+    'POST',
+    `https://music.163.com/api/toplist`,
+    {},
+    {
+      crypto: 'api',
+      cookie: query.cookie,
+      proxy: query.proxy,
+      realIP: query.realIP,
+    },
+  )
+}

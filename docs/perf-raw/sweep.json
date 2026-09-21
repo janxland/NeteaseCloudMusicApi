@@ -1,0 +1,5555 @@
+{
+  "mode": "sweep",
+  "concurrency": 4,
+  "durationSec": 0.7,
+  "generatedAt": "2026-09-20T17:38:04.447Z",
+  "measured": 154,
+  "total": 267,
+  "results": [
+    {
+      "route": "/album",
+      "tier": "P0",
+      "desc": "专辑内容",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7082.9,
+        "samples": 4958,
+        "p50": 0.36,
+        "p90": 1.16,
+        "bytes": 18804,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 16178.6,
+        "samples": 11325,
+        "p50": 0.14,
+        "p90": 0.48,
+        "bytes": 18804,
+        "errors": 0
+      },
+      "gainPct": 128.4
+    },
+    {
+      "route": "/album/detail",
+      "tier": "P0",
+      "desc": "数字专辑详情",
+      "cacheable": true,
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/album/detail/dynamic",
+      "tier": "P0",
+      "desc": "专辑动态信息",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10924.3,
+        "samples": 7647,
+        "p50": 0.24,
+        "p90": 0.68,
+        "bytes": 145,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 14267.1,
+        "samples": 9987,
+        "p50": 0.16,
+        "p90": 0.48,
+        "bytes": 145,
+        "errors": 0
+      },
+      "gainPct": 30.6
+    },
+    {
+      "route": "/album/list",
+      "tier": "P0",
+      "desc": "数字专辑-新碟上架",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 20601.4,
+        "samples": 14421,
+        "p50": 0.12,
+        "p90": 0.28,
+        "bytes": 10430,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12377.1,
+        "samples": 8664,
+        "p50": 0.23,
+        "p90": 0.52,
+        "bytes": 10430,
+        "errors": 0
+      },
+      "gainPct": 66.4
+    },
+    {
+      "route": "/album/list/style",
+      "tier": "P0",
+      "desc": "数字专辑-语种风格馆",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/album/new",
+      "tier": "P0",
+      "desc": "全部新碟",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 14962.9,
+        "samples": 10474,
+        "p50": 0.16,
+        "p90": 0.48,
+        "bytes": 48716,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 10357.1,
+        "samples": 7250,
+        "p50": 0.25,
+        "p90": 0.77,
+        "bytes": 48716,
+        "errors": 0
+      },
+      "gainPct": 44.5
+    },
+    {
+      "route": "/album/newest",
+      "tier": "P0",
+      "desc": "最新专辑",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12747.1,
+        "samples": 8923,
+        "p50": 0.22,
+        "p90": 0.52,
+        "bytes": 16364,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 19924.3,
+        "samples": 13947,
+        "p50": 0.13,
+        "p90": 0.31,
+        "bytes": 16364,
+        "errors": 0
+      },
+      "gainPct": 56.3
+    },
+    {
+      "route": "/album/songsaleboard",
+      "tier": "P0",
+      "desc": "数字专辑&数字单曲-榜单",
+      "cacheable": true,
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/album/sub",
+      "tier": "P1",
+      "desc": "收藏/取消收藏专辑",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/album/sublist",
+      "tier": "P1",
+      "desc": "已收藏专辑列表",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artist/album",
+      "tier": "P0",
+      "desc": "歌手专辑列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10542.9,
+        "samples": 7380,
+        "p50": 0.25,
+        "p90": 0.71,
+        "bytes": 42437,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 12311.4,
+        "samples": 8618,
+        "p50": 0.17,
+        "p90": 0.66,
+        "bytes": 42437,
+        "errors": 0
+      },
+      "gainPct": 16.8
+    },
+    {
+      "route": "/artist/desc",
+      "tier": "P0",
+      "desc": "歌手介绍",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 10332.9,
+        "samples": 7233,
+        "p50": 0.23,
+        "p90": 0.81,
+        "bytes": 85675,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 6277.1,
+        "samples": 4394,
+        "p50": 0.42,
+        "p90": 1.22,
+        "bytes": 85675,
+        "errors": 0
+      },
+      "gainPct": 64.6
+    },
+    {
+      "route": "/artist/detail",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11685.7,
+        "samples": 8180,
+        "p50": 0.22,
+        "p90": 0.62,
+        "bytes": 692,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22271.4,
+        "samples": 15590,
+        "p50": 0.11,
+        "p90": 0.26,
+        "bytes": 692,
+        "errors": 0
+      },
+      "gainPct": 90.6
+    },
+    {
+      "route": "/artist/fans",
+      "tier": "P0",
+      "desc": "歌手粉丝",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22021.4,
+        "samples": 15415,
+        "p50": 0.12,
+        "p90": 0.26,
+        "bytes": 1396,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12915.7,
+        "samples": 9041,
+        "p50": 0.22,
+        "p90": 0.49,
+        "bytes": 1396,
+        "errors": 0
+      },
+      "gainPct": 70.5
+    },
+    {
+      "route": "/artist/follow/count",
+      "tier": "P0",
+      "desc": "歌手粉丝数量",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12062.9,
+        "samples": 8444,
+        "p50": 0.22,
+        "p90": 0.55,
+        "bytes": 147,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22138.6,
+        "samples": 15497,
+        "p50": 0.11,
+        "p90": 0.27,
+        "bytes": 147,
+        "errors": 0
+      },
+      "gainPct": 83.5
+    },
+    {
+      "route": "/artist/list",
+      "tier": "P0",
+      "desc": "歌手分类",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 19525.7,
+        "samples": 13668,
+        "p50": 0.12,
+        "p90": 0.33,
+        "bytes": 37,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12567.1,
+        "samples": 8797,
+        "p50": 0.23,
+        "p90": 0.48,
+        "bytes": 37,
+        "errors": 0
+      },
+      "gainPct": 55.4
+    },
+    {
+      "route": "/artist/mv",
+      "tier": "P0",
+      "desc": "歌手相关MV",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11442.9,
+        "samples": 8010,
+        "p50": 0.24,
+        "p90": 0.6,
+        "bytes": 20648,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 14258.6,
+        "samples": 9981,
+        "p50": 0.17,
+        "p90": 0.48,
+        "bytes": 20648,
+        "errors": 0
+      },
+      "gainPct": 24.6
+    },
+    {
+      "route": "/artist/new/mv",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artist/new/song",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artist/songs",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 14328.6,
+        "samples": 10030,
+        "p50": 0.16,
+        "p90": 0.54,
+        "bytes": 52957,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 10917.1,
+        "samples": 7642,
+        "p50": 0.24,
+        "p90": 0.72,
+        "bytes": 52957,
+        "errors": 0
+      },
+      "gainPct": 31.2
+    },
+    {
+      "route": "/artist/sub",
+      "tier": "P1",
+      "desc": "收藏与取消收藏歌手",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artist/sublist",
+      "tier": "P1",
+      "desc": "关注歌手列表",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artist/top/song",
+      "tier": "P0",
+      "desc": "歌手热门 50 首歌曲",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 8550,
+        "samples": 5985,
+        "p50": 0.28,
+        "p90": 1,
+        "bytes": 105416,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 9822.9,
+        "samples": 6876,
+        "p50": 0.23,
+        "p90": 0.97,
+        "bytes": 105416,
+        "errors": 0
+      },
+      "gainPct": 14.9
+    },
+    {
+      "route": "/artist/video",
+      "tier": "P0",
+      "desc": "歌手相关视频",
+      "cacheable": true,
+      "new": {
+        "status": 502,
+        "rps": null
+      },
+      "old": {
+        "status": 502,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/artists",
+      "tier": "P0",
+      "desc": "歌手单曲",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 8987.1,
+        "samples": 6291,
+        "p50": 0.27,
+        "p90": 0.97,
+        "bytes": 92433,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 10361.4,
+        "samples": 7253,
+        "p50": 0.21,
+        "p90": 0.86,
+        "bytes": 92433,
+        "errors": 0
+      },
+      "gainPct": 15.3
+    },
+    {
+      "route": "/audio/match",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 17840,
+        "samples": 12488,
+        "p50": 0.13,
+        "p90": 0.4,
+        "bytes": 10832,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13617.1,
+        "samples": 9532,
+        "p50": 0.21,
+        "p90": 0.46,
+        "bytes": 10832,
+        "errors": 0
+      },
+      "gainPct": 31
+    },
+    {
+      "route": "/avatar/upload",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/banner",
+      "tier": "P0",
+      "desc": "首页轮播图",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 21348.6,
+        "samples": 14944,
+        "p50": 0.12,
+        "p90": 0.26,
+        "bytes": 7276,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13510,
+        "samples": 9457,
+        "p50": 0.21,
+        "p90": 0.43,
+        "bytes": 7275,
+        "errors": 0
+      },
+      "gainPct": 58
+    },
+    {
+      "route": "/batch",
+      "tier": "P0",
+      "desc": "批量请求接口",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13427.1,
+        "samples": 9399,
+        "p50": 0.21,
+        "p90": 0.46,
+        "bytes": 34,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21078.6,
+        "samples": 14755,
+        "p50": 0.11,
+        "p90": 0.31,
+        "bytes": 34,
+        "errors": 0
+      },
+      "gainPct": 57
+    },
+    {
+      "route": "/calendar",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/cellphone/existence/check",
+      "tier": "P0",
+      "desc": "检测手机号码是否已注册",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11800,
+        "samples": 8260,
+        "p50": 0.23,
+        "p90": 0.6,
+        "bytes": 98,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22048.6,
+        "samples": 15434,
+        "p50": 0.12,
+        "p90": 0.27,
+        "bytes": 98,
+        "errors": 0
+      },
+      "gainPct": 86.9
+    },
+    {
+      "route": "/check/music",
+      "tier": "P0",
+      "desc": "歌曲可用性",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 20521.4,
+        "samples": 14365,
+        "p50": 0.12,
+        "p90": 0.31,
+        "bytes": 52,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 7754.3,
+        "samples": 5428,
+        "p50": 0.34,
+        "p90": 0.88,
+        "bytes": 52,
+        "errors": 0
+      },
+      "gainPct": 164.6
+    },
+    {
+      "route": "/cloudsearch",
+      "tier": "P0",
+      "desc": "搜索",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7834.3,
+        "samples": 5484,
+        "p50": 0.36,
+        "p90": 0.97,
+        "bytes": 45442,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 9854.3,
+        "samples": 6898,
+        "p50": 0.26,
+        "p90": 0.77,
+        "bytes": 45442,
+        "errors": 0
+      },
+      "gainPct": 25.8
+    },
+    {
+      "route": "/comment",
+      "tier": "P0",
+      "desc": "发送与删除评论",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 12191.4,
+        "samples": 8534,
+        "p50": 0.22,
+        "p90": 0.58,
+        "bytes": 61,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 7260,
+        "samples": 5082,
+        "p50": 0.38,
+        "p90": 1,
+        "bytes": 61,
+        "errors": 0
+      },
+      "gainPct": 67.9
+    },
+    {
+      "route": "/comment/album",
+      "tier": "P0",
+      "desc": "专辑评论",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7767.1,
+        "samples": 5437,
+        "p50": 0.3,
+        "p90": 1.03,
+        "bytes": 87984,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 10468.6,
+        "samples": 7328,
+        "p50": 0.21,
+        "p90": 0.81,
+        "bytes": 87984,
+        "errors": 0
+      },
+      "gainPct": 34.8
+    },
+    {
+      "route": "/comment/dj",
+      "tier": "P0",
+      "desc": "电台评论",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18475.7,
+        "samples": 12933,
+        "p50": 0.11,
+        "p90": 0.29,
+        "bytes": 151,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12471.4,
+        "samples": 8730,
+        "p50": 0.22,
+        "p90": 0.54,
+        "bytes": 151,
+        "errors": 0
+      },
+      "gainPct": 48.1
+    },
+    {
+      "route": "/comment/event",
+      "tier": "P0",
+      "desc": "获取动态评论",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11692.9,
+        "samples": 8185,
+        "p50": 0.23,
+        "p90": 0.59,
+        "bytes": 61,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21068.6,
+        "samples": 14748,
+        "p50": 0.12,
+        "p90": 0.29,
+        "bytes": 61,
+        "errors": 0
+      },
+      "gainPct": 80.2
+    },
+    {
+      "route": "/comment/floor",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 21708.6,
+        "samples": 15196,
+        "p50": 0.12,
+        "p90": 0.29,
+        "bytes": 49,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12251.4,
+        "samples": 8576,
+        "p50": 0.23,
+        "p90": 0.53,
+        "bytes": 49,
+        "errors": 0
+      },
+      "gainPct": 77.2
+    },
+    {
+      "route": "/comment/hot",
+      "tier": "P0",
+      "desc": "热门评论",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12827.1,
+        "samples": 8979,
+        "p50": 0.22,
+        "p90": 0.51,
+        "bytes": 72,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22082.9,
+        "samples": 15458,
+        "p50": 0.11,
+        "p90": 0.28,
+        "bytes": 72,
+        "errors": 0
+      },
+      "gainPct": 72.2
+    },
+    {
+      "route": "/comment/hug/list",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/comment/like",
+      "tier": "P1",
+      "desc": "点赞与取消点赞评论",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/comment/music",
+      "tier": "P0",
+      "desc": "歌曲评论",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 12915.7,
+        "samples": 9041,
+        "p50": 0.18,
+        "p90": 0.62,
+        "bytes": 68659,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 10287.1,
+        "samples": 7201,
+        "p50": 0.25,
+        "p90": 0.77,
+        "bytes": 68659,
+        "errors": 0
+      },
+      "gainPct": 25.6
+    },
+    {
+      "route": "/comment/mv",
+      "tier": "P0",
+      "desc": "MV评论",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10428.6,
+        "samples": 7300,
+        "p50": 0.25,
+        "p90": 0.77,
+        "bytes": 58567,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 11801.4,
+        "samples": 8261,
+        "p50": 0.19,
+        "p90": 0.71,
+        "bytes": 58567,
+        "errors": 0
+      },
+      "gainPct": 13.2
+    },
+    {
+      "route": "/comment/new",
+      "tier": "P0",
+      "desc": "评论",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18587.1,
+        "samples": 13011,
+        "p50": 0.12,
+        "p90": 0.38,
+        "bytes": 923,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 11972.9,
+        "samples": 8381,
+        "p50": 0.23,
+        "p90": 0.58,
+        "bytes": 923,
+        "errors": 0
+      },
+      "gainPct": 55.2
+    },
+    {
+      "route": "/comment/playlist",
+      "tier": "P0",
+      "desc": "歌单评论",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11491.4,
+        "samples": 8044,
+        "p50": 0.24,
+        "p90": 0.58,
+        "bytes": 151,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18165.7,
+        "samples": 12716,
+        "p50": 0.13,
+        "p90": 0.36,
+        "bytes": 151,
+        "errors": 0
+      },
+      "gainPct": 58.1
+    },
+    {
+      "route": "/comment/video",
+      "tier": "P0",
+      "desc": "视频评论",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 7837.1,
+        "samples": 5486,
+        "p50": 0.32,
+        "p90": 0.82,
+        "bytes": 151,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 9050,
+        "samples": 6335,
+        "p50": 0.26,
+        "p90": 0.81,
+        "bytes": 151,
+        "errors": 0
+      },
+      "gainPct": -13.4
+    },
+    {
+      "route": "/countries/code/list",
+      "tier": "P0",
+      "desc": "国家编码列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13115.7,
+        "samples": 9181,
+        "p50": 0.22,
+        "p90": 0.47,
+        "bytes": 12721,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18614.3,
+        "samples": 13030,
+        "p50": 0.13,
+        "p90": 0.37,
+        "bytes": 12721,
+        "errors": 0
+      },
+      "gainPct": 41.9
+    },
+    {
+      "route": "/daily_signin",
+      "tier": "P1",
+      "desc": "签到",
+      "cacheable": false,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/digitalAlbum/detail",
+      "tier": "P0",
+      "desc": "数字专辑详情",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/digitalAlbum/ordering",
+      "tier": "P0",
+      "desc": "购买数字专辑",
+      "cacheable": true,
+      "new": {
+        "status": 502,
+        "rps": null
+      },
+      "old": {
+        "status": 502,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/digitalAlbum/purchased",
+      "tier": "P1",
+      "desc": "我的数字专辑",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/digitalAlbum/sales",
+      "tier": "P0",
+      "desc": "数字专辑销量",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 14998.6,
+        "samples": 10499,
+        "p50": 0.15,
+        "p90": 0.51,
+        "bytes": 31,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 8862.9,
+        "samples": 6204,
+        "p50": 0.31,
+        "p90": 0.81,
+        "bytes": 31,
+        "errors": 0
+      },
+      "gainPct": 69.2
+    },
+    {
+      "route": "/dj/banner",
+      "tier": "P0",
+      "desc": "电台banner",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7641.4,
+        "samples": 5349,
+        "p50": 0.41,
+        "p90": 0.87,
+        "bytes": 624,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 13364.3,
+        "samples": 9355,
+        "p50": 0.2,
+        "p90": 0.53,
+        "bytes": 624,
+        "errors": 0
+      },
+      "gainPct": 74.9
+    },
+    {
+      "route": "/dj/category/excludehot",
+      "tier": "P0",
+      "desc": "电台非热门类型",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 14180,
+        "samples": 9926,
+        "p50": 0.17,
+        "p90": 0.52,
+        "bytes": 17278,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 9345.7,
+        "samples": 6542,
+        "p50": 0.31,
+        "p90": 0.77,
+        "bytes": 17278,
+        "errors": 0
+      },
+      "gainPct": 51.7
+    },
+    {
+      "route": "/dj/category/recommend",
+      "tier": "P0",
+      "desc": "电台推荐类型",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11834.3,
+        "samples": 8284,
+        "p50": 0.23,
+        "p90": 0.59,
+        "bytes": 17489,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 20112.9,
+        "samples": 14079,
+        "p50": 0.13,
+        "p90": 0.3,
+        "bytes": 17489,
+        "errors": 0
+      },
+      "gainPct": 70
+    },
+    {
+      "route": "/dj/catelist",
+      "tier": "P0",
+      "desc": "电台分类列表",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 19294.3,
+        "samples": 13506,
+        "p50": 0.13,
+        "p90": 0.32,
+        "bytes": 25239,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 11470,
+        "samples": 8029,
+        "p50": 0.25,
+        "p90": 0.57,
+        "bytes": 25239,
+        "errors": 0
+      },
+      "gainPct": 68.2
+    },
+    {
+      "route": "/dj/detail",
+      "tier": "P0",
+      "desc": "电台详情",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/dj/hot",
+      "tier": "P0",
+      "desc": "热门电台",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 13524.3,
+        "samples": 9467,
+        "p50": 0.18,
+        "p90": 0.53,
+        "bytes": 36386,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 8948.6,
+        "samples": 6264,
+        "p50": 0.3,
+        "p90": 0.87,
+        "bytes": 36386,
+        "errors": 0
+      },
+      "gainPct": 51.1
+    },
+    {
+      "route": "/dj/paygift",
+      "tier": "P0",
+      "desc": "付费电台",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7485.7,
+        "samples": 5240,
+        "p50": 0.34,
+        "p90": 1.01,
+        "bytes": 12918,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 4515.7,
+        "samples": 3161,
+        "p50": 0.53,
+        "p90": 1.94,
+        "bytes": 12918,
+        "errors": 0
+      },
+      "gainPct": -39.7
+    },
+    {
+      "route": "/dj/personalize/recommend",
+      "tier": "P0",
+      "desc": "电台个性推荐",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 3514.3,
+        "samples": 2460,
+        "p50": 0.62,
+        "p90": 2.5,
+        "bytes": 71090,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 2847.1,
+        "samples": 1993,
+        "p50": 1,
+        "p90": 2.86,
+        "bytes": 71090,
+        "errors": 0
+      },
+      "gainPct": 23.4
+    },
+    {
+      "route": "/dj/program",
+      "tier": "P0",
+      "desc": "电台节目列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 2781.4,
+        "samples": 1947,
+        "p50": 0.98,
+        "p90": 3.19,
+        "bytes": 49,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 7381.4,
+        "samples": 5167,
+        "p50": 0.38,
+        "p90": 0.97,
+        "bytes": 49,
+        "errors": 0
+      },
+      "gainPct": 165.4
+    },
+    {
+      "route": "/dj/program/detail",
+      "tier": "P0",
+      "desc": "电台节目详情",
+      "cacheable": true,
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/dj/program/toplist",
+      "tier": "P0",
+      "desc": "电台节目榜",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 1882.9,
+        "samples": 1318,
+        "p50": 1.5,
+        "p90": 4.5,
+        "bytes": 179344,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 3538.6,
+        "samples": 2477,
+        "p50": 0.67,
+        "p90": 2.61,
+        "bytes": 179344,
+        "errors": 0
+      },
+      "gainPct": 87.9
+    },
+    {
+      "route": "/dj/program/toplist/hours",
+      "tier": "P0",
+      "desc": "电台24小时节目榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 5955.7,
+        "samples": 4169,
+        "p50": 0.4,
+        "p90": 1.46,
+        "bytes": 209482,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 3357.1,
+        "samples": 2350,
+        "p50": 0.81,
+        "p90": 2.41,
+        "bytes": 209482,
+        "errors": 0
+      },
+      "gainPct": 77.4
+    },
+    {
+      "route": "/dj/radio/hot",
+      "tier": "P0",
+      "desc": "类别热门电台",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 7351.4,
+        "samples": 5146,
+        "p50": 0.35,
+        "p90": 1.09,
+        "bytes": 52,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 14974.3,
+        "samples": 10482,
+        "p50": 0.13,
+        "p90": 0.47,
+        "bytes": 52,
+        "errors": 0
+      },
+      "gainPct": 103.7
+    },
+    {
+      "route": "/dj/recommend",
+      "tier": "P0",
+      "desc": "精选电台",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18914.3,
+        "samples": 13240,
+        "p50": 0.13,
+        "p90": 0.35,
+        "bytes": 12513,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 10894.3,
+        "samples": 7626,
+        "p50": 0.24,
+        "p90": 0.64,
+        "bytes": 12513,
+        "errors": 0
+      },
+      "gainPct": 73.6
+    },
+    {
+      "route": "/dj/recommend/type",
+      "tier": "P0",
+      "desc": "精选电台分类",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12062.9,
+        "samples": 8444,
+        "p50": 0.22,
+        "p90": 0.55,
+        "bytes": 42,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21362.9,
+        "samples": 14954,
+        "p50": 0.11,
+        "p90": 0.28,
+        "bytes": 42,
+        "errors": 0
+      },
+      "gainPct": 77.1
+    },
+    {
+      "route": "/dj/sub",
+      "tier": "P1",
+      "desc": "订阅与取消电台",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/dj/sublist",
+      "tier": "P0",
+      "desc": "订阅电台列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 9317.1,
+        "samples": 6522,
+        "p50": 0.29,
+        "p90": 0.74,
+        "bytes": 26,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 17840,
+        "samples": 12488,
+        "p50": 0.12,
+        "p90": 0.39,
+        "bytes": 26,
+        "errors": 0
+      },
+      "gainPct": 91.5
+    },
+    {
+      "route": "/dj/subscriber",
+      "tier": "P0",
+      "desc": "电台详情",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22040,
+        "samples": 15428,
+        "p50": 0.11,
+        "p90": 0.27,
+        "bytes": 54,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12785.7,
+        "samples": 8950,
+        "p50": 0.22,
+        "p90": 0.5,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 72.4
+    },
+    {
+      "route": "/dj/today/perfered",
+      "tier": "P0",
+      "desc": "电台今日优选",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13087.1,
+        "samples": 9161,
+        "p50": 0.22,
+        "p90": 0.53,
+        "bytes": 33,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22105.7,
+        "samples": 15474,
+        "p50": 0.11,
+        "p90": 0.27,
+        "bytes": 33,
+        "errors": 0
+      },
+      "gainPct": 68.9
+    },
+    {
+      "route": "/dj/toplist",
+      "tier": "P0",
+      "desc": "新晋电台榜/热门电台榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18841.4,
+        "samples": 13189,
+        "p50": 0.14,
+        "p90": 0.33,
+        "bytes": 26838,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12237.1,
+        "samples": 8566,
+        "p50": 0.23,
+        "p90": 0.56,
+        "bytes": 26838,
+        "errors": 0
+      },
+      "gainPct": 54
+    },
+    {
+      "route": "/dj/toplist/hours",
+      "tier": "P0",
+      "desc": "电台24小时主播榜",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12430,
+        "samples": 8701,
+        "p50": 0.22,
+        "p90": 0.55,
+        "bytes": 12264,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 20421.4,
+        "samples": 14295,
+        "p50": 0.13,
+        "p90": 0.29,
+        "bytes": 12264,
+        "errors": 0
+      },
+      "gainPct": 64.3
+    },
+    {
+      "route": "/dj/toplist/newcomer",
+      "tier": "P0",
+      "desc": "电台新人榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 19541.4,
+        "samples": 13679,
+        "p50": 0.13,
+        "p90": 0.31,
+        "bytes": 9556,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12415.7,
+        "samples": 8691,
+        "p50": 0.22,
+        "p90": 0.55,
+        "bytes": 9556,
+        "errors": 0
+      },
+      "gainPct": 57.4
+    },
+    {
+      "route": "/dj/toplist/pay",
+      "tier": "P0",
+      "desc": "付费精品",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12987.1,
+        "samples": 9091,
+        "p50": 0.22,
+        "p90": 0.48,
+        "bytes": 6955,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21592.9,
+        "samples": 15115,
+        "p50": 0.12,
+        "p90": 0.27,
+        "bytes": 6955,
+        "errors": 0
+      },
+      "gainPct": 66.3
+    },
+    {
+      "route": "/dj/toplist/popular",
+      "tier": "P0",
+      "desc": "电台最热主播榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 20650,
+        "samples": 14455,
+        "p50": 0.12,
+        "p90": 0.28,
+        "bytes": 10579,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12181.4,
+        "samples": 8527,
+        "p50": 0.22,
+        "p90": 0.56,
+        "bytes": 10579,
+        "errors": 0
+      },
+      "gainPct": 69.5
+    },
+    {
+      "route": "/event",
+      "tier": "P1",
+      "desc": "动态",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/event/del",
+      "tier": "P0",
+      "desc": "删除动态",
+      "cacheable": true,
+      "new": {
+        "status": 403,
+        "rps": null
+      },
+      "old": {
+        "status": 403,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/event/forward",
+      "tier": "P1",
+      "desc": "转发动态",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/fm_trash",
+      "tier": "P1",
+      "desc": "垃圾桶",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/follow",
+      "tier": "P1",
+      "desc": "关注与取消关注用户",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/history/recommend/songs",
+      "tier": "P0",
+      "desc": "历史每日推荐歌曲",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 13541.4,
+        "samples": 9479,
+        "p50": 0.13,
+        "p90": 0.53,
+        "bytes": 231,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 1364.3,
+        "samples": 955,
+        "p50": 1.29,
+        "p90": 4.8,
+        "bytes": 231,
+        "errors": 0
+      },
+      "gainPct": 892.6
+    },
+    {
+      "route": "/history/recommend/songs/detail",
+      "tier": "P1",
+      "desc": "历史每日推荐歌曲详情",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/homepage/block/page",
+      "tier": "P0",
+      "desc": "首页-发现 block page",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 2065.7,
+        "samples": 1446,
+        "p50": 1.48,
+        "p90": 3.58,
+        "bytes": 397938,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 3560,
+        "samples": 2492,
+        "p50": 0.81,
+        "p90": 2.19,
+        "bytes": 397938,
+        "errors": 0
+      },
+      "gainPct": -42
+    },
+    {
+      "route": "/homepage/dragon/ball",
+      "tier": "P0",
+      "desc": "首页-发现 dragon ball",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10992.9,
+        "samples": 7695,
+        "p50": 0.23,
+        "p90": 0.68,
+        "bytes": 35,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 9122.9,
+        "samples": 6386,
+        "p50": 0.2,
+        "p90": 0.62,
+        "bytes": 35,
+        "errors": 0
+      },
+      "gainPct": -17
+    },
+    {
+      "route": "/hot/topic",
+      "tier": "P1",
+      "desc": "热门话题",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/hug/comment",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/inner/version",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 19870,
+        "samples": 13909,
+        "p50": 0.11,
+        "p90": 0.31,
+        "bytes": 40,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 11772.9,
+        "samples": 8241,
+        "p50": 0.23,
+        "p90": 0.55,
+        "bytes": 40,
+        "errors": 0
+      },
+      "gainPct": 68.8
+    },
+    {
+      "route": "/like",
+      "tier": "P1",
+      "desc": "红心与取消红心歌曲",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/likelist",
+      "tier": "P1",
+      "desc": "喜欢的歌曲(无序)",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/listentogether/end",
+      "tier": "P0",
+      "desc": "一起听 结束房间",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12365.7,
+        "samples": 8656,
+        "p50": 0.22,
+        "p90": 0.52,
+        "bytes": 82,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22132.9,
+        "samples": 15493,
+        "p50": 0.12,
+        "p90": 0.27,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 79
+    },
+    {
+      "route": "/listentogether/heatbeat",
+      "tier": "P0",
+      "desc": "一起听 发送心跳",
+      "cacheable": true,
+      "new": {
+        "status": 502,
+        "rps": null
+      },
+      "old": {
+        "status": 502,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/listentogether/play/command",
+      "tier": "P0",
+      "desc": "一起听 发送播放状态",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10367.1,
+        "samples": 7257,
+        "p50": 0.24,
+        "p90": 0.59,
+        "bytes": 82,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23365.7,
+        "samples": 16356,
+        "p50": 0.11,
+        "p90": 0.23,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 125.4
+    },
+    {
+      "route": "/listentogether/room/check",
+      "tier": "P0",
+      "desc": "一起听 房间情况",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22000,
+        "samples": 15400,
+        "p50": 0.11,
+        "p90": 0.27,
+        "bytes": 82,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 10157.1,
+        "samples": 7110,
+        "p50": 0.26,
+        "p90": 0.7,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 116.6
+    },
+    {
+      "route": "/listentogether/room/create",
+      "tier": "P0",
+      "desc": "一起听创建房间",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12520,
+        "samples": 8764,
+        "p50": 0.22,
+        "p90": 0.5,
+        "bytes": 82,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24084.3,
+        "samples": 16859,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 92.4
+    },
+    {
+      "route": "/listentogether/status",
+      "tier": "P1",
+      "desc": "一起听状态",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/listentogether/sync/list/command",
+      "tier": "P0",
+      "desc": "一起听 更新播放列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10961.4,
+        "samples": 7673,
+        "p50": 0.25,
+        "p90": 0.61,
+        "bytes": 82,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 14922.9,
+        "samples": 10446,
+        "p50": 0.14,
+        "p90": 0.5,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 36.1
+    },
+    {
+      "route": "/listentogether/sync/playlist/get",
+      "tier": "P0",
+      "desc": "一起听 当前列表获取",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22877.1,
+        "samples": 16014,
+        "p50": 0.11,
+        "p90": 0.25,
+        "bytes": 82,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14614.3,
+        "samples": 10230,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 56.5
+    },
+    {
+      "route": "/login",
+      "tier": "P0",
+      "desc": "邮箱登录",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/login/qr/create",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": 20585.7,
+        "samples": 14410,
+        "p50": 0.11,
+        "p90": 0.31,
+        "bytes": 79,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 7310,
+        "samples": 5117,
+        "p50": 0.36,
+        "p90": 1.04,
+        "bytes": 79,
+        "errors": 0
+      },
+      "gainPct": 181.6
+    },
+    {
+      "route": "/login/qr/key",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/lyric",
+      "tier": "P0",
+      "desc": "歌词",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 13334.3,
+        "samples": 9334,
+        "p50": 0.16,
+        "p90": 0.51,
+        "bytes": 4144,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13667.1,
+        "samples": 9567,
+        "p50": 0.21,
+        "p90": 0.42,
+        "bytes": 4144,
+        "errors": 0
+      },
+      "gainPct": -2.4
+    },
+    {
+      "route": "/lyric/new",
+      "tier": "P0",
+      "desc": "新版歌词 - 包含逐字歌词",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14451.4,
+        "samples": 10116,
+        "p50": 0.21,
+        "p90": 0.39,
+        "bytes": 5018,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18151.4,
+        "samples": 12706,
+        "p50": 0.13,
+        "p90": 0.37,
+        "bytes": 5018,
+        "errors": 0
+      },
+      "gainPct": 25.6
+    },
+    {
+      "route": "/mlog/music/rcmd",
+      "tier": "P0",
+      "desc": "歌曲相关视频",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 23154.3,
+        "samples": 16208,
+        "p50": 0.12,
+        "p90": 0.23,
+        "bytes": 3694,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14197.1,
+        "samples": 9938,
+        "p50": 0.22,
+        "p90": 0.36,
+        "bytes": 3694,
+        "errors": 0
+      },
+      "gainPct": 63.1
+    },
+    {
+      "route": "/mlog/to/video",
+      "tier": "P0",
+      "desc": "将mlog id转为video id",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12871.4,
+        "samples": 9010,
+        "p50": 0.22,
+        "p90": 0.5,
+        "bytes": 55,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 17792.9,
+        "samples": 12455,
+        "p50": 0.13,
+        "p90": 0.37,
+        "bytes": 55,
+        "errors": 0
+      },
+      "gainPct": 38.2
+    },
+    {
+      "route": "/mlog/url",
+      "tier": "P0",
+      "desc": "mlog链接",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18918.6,
+        "samples": 13243,
+        "p50": 0.12,
+        "p90": 0.34,
+        "bytes": 49,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 11540,
+        "samples": 8078,
+        "p50": 0.22,
+        "p90": 0.58,
+        "bytes": 49,
+        "errors": 0
+      },
+      "gainPct": 63.9
+    },
+    {
+      "route": "/msg/comments",
+      "tier": "P1",
+      "desc": "评论",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/msg/forwards",
+      "tier": "P1",
+      "desc": "@我",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/msg/notices",
+      "tier": "P1",
+      "desc": "通知",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/msg/private",
+      "tier": "P1",
+      "desc": "私信",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/msg/private/history",
+      "tier": "P1",
+      "desc": "私信内容",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/msg/recentcontact",
+      "tier": "P1",
+      "desc": "最近联系",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/musician/cloudbean",
+      "tier": "P1",
+      "desc": "账号云豆数",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/musician/cloudbean/obtain",
+      "tier": "P1",
+      "desc": "领取云豆",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/musician/data/overview",
+      "tier": "P0",
+      "desc": "音乐人数据概况",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14544.3,
+        "samples": 10181,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 61,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25497.1,
+        "samples": 17848,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 61,
+        "errors": 0
+      },
+      "gainPct": 75.3
+    },
+    {
+      "route": "/musician/play/trend",
+      "tier": "P0",
+      "desc": "音乐人歌曲播放趋势",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24121.4,
+        "samples": 16885,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 61,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14702.9,
+        "samples": 10292,
+        "p50": 0.21,
+        "p90": 0.35,
+        "bytes": 61,
+        "errors": 0
+      },
+      "gainPct": 64.1
+    },
+    {
+      "route": "/musician/sign",
+      "tier": "P0",
+      "desc": "音乐人签到",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14855.7,
+        "samples": 10399,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 61,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25391.4,
+        "samples": 17774,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 61,
+        "errors": 0
+      },
+      "gainPct": 70.9
+    },
+    {
+      "route": "/musician/tasks",
+      "tier": "P1",
+      "desc": "获取音乐人任务",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/musician/tasks/new",
+      "tier": "P1",
+      "desc": "获取音乐人任务",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/mv/all",
+      "tier": "P0",
+      "desc": "全部MV",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 16775.7,
+        "samples": 11743,
+        "p50": 0.13,
+        "p90": 0.4,
+        "bytes": 12,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 9152.9,
+        "samples": 6407,
+        "p50": 0.26,
+        "p90": 0.78,
+        "bytes": 12,
+        "errors": 0
+      },
+      "gainPct": 83.3
+    },
+    {
+      "route": "/mv/detail",
+      "tier": "P0",
+      "desc": "MV详情",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12570,
+        "samples": 8799,
+        "p50": 0.22,
+        "p90": 0.49,
+        "bytes": 1011,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21412.9,
+        "samples": 14989,
+        "p50": 0.12,
+        "p90": 0.27,
+        "bytes": 1011,
+        "errors": 0
+      },
+      "gainPct": 70.3
+    },
+    {
+      "route": "/mv/detail/info",
+      "tier": "P0",
+      "desc": "MV 点赞转发评论数数据",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24720,
+        "samples": 17304,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 81,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14177.1,
+        "samples": 9924,
+        "p50": 0.21,
+        "p90": 0.39,
+        "bytes": 81,
+        "errors": 0
+      },
+      "gainPct": 74.4
+    },
+    {
+      "route": "/mv/exclusive/rcmd",
+      "tier": "P0",
+      "desc": "网易出品",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14477.1,
+        "samples": 10134,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 11210,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23094.3,
+        "samples": 16166,
+        "p50": 0.12,
+        "p90": 0.22,
+        "bytes": 11210,
+        "errors": 0
+      },
+      "gainPct": 59.5
+    },
+    {
+      "route": "/mv/first",
+      "tier": "P0",
+      "desc": "最新MV",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25134.3,
+        "samples": 17594,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 22,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14217.1,
+        "samples": 9952,
+        "p50": 0.22,
+        "p90": 0.39,
+        "bytes": 22,
+        "errors": 0
+      },
+      "gainPct": 76.8
+    },
+    {
+      "route": "/mv/sub",
+      "tier": "P1",
+      "desc": "收藏与取消收藏MV",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/mv/sublist",
+      "tier": "P1",
+      "desc": "已收藏MV列表",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/mv/url",
+      "tier": "P0",
+      "desc": "MV链接",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14790,
+        "samples": 10353,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 336,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25341.4,
+        "samples": 17739,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 336,
+        "errors": 0
+      },
+      "gainPct": 71.3
+    },
+    {
+      "route": "/nickname/check",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 21717.1,
+        "samples": 15202,
+        "p50": 0.12,
+        "p90": 0.26,
+        "bytes": 191,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12084.3,
+        "samples": 8459,
+        "p50": 0.22,
+        "p90": 0.5,
+        "bytes": 191,
+        "errors": 0
+      },
+      "gainPct": 79.7
+    },
+    {
+      "route": "/personal_fm",
+      "tier": "P0",
+      "desc": "私人FM",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13978.6,
+        "samples": 9785,
+        "p50": 0.21,
+        "p90": 0.41,
+        "bytes": 3611,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22011.4,
+        "samples": 15408,
+        "p50": 0.12,
+        "p90": 0.26,
+        "bytes": 3629,
+        "errors": 0
+      },
+      "gainPct": 57.5
+    },
+    {
+      "route": "/personalized",
+      "tier": "P0",
+      "desc": "推荐歌单",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 21015.7,
+        "samples": 14711,
+        "p50": 0.12,
+        "p90": 0.26,
+        "bytes": 9635,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 11101.4,
+        "samples": 7771,
+        "p50": 0.24,
+        "p90": 0.64,
+        "bytes": 9697,
+        "errors": 0
+      },
+      "gainPct": 89.3
+    },
+    {
+      "route": "/personalized/djprogram",
+      "tier": "P0",
+      "desc": "推荐电台",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12332.9,
+        "samples": 8633,
+        "p50": 0.22,
+        "p90": 0.48,
+        "bytes": 34672,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 19504.3,
+        "samples": 13653,
+        "p50": 0.14,
+        "p90": 0.29,
+        "bytes": 34672,
+        "errors": 0
+      },
+      "gainPct": 58.1
+    },
+    {
+      "route": "/personalized/mv",
+      "tier": "P0",
+      "desc": "推荐MV",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25784.3,
+        "samples": 18049,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 890,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14682.9,
+        "samples": 10278,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 890,
+        "errors": 0
+      },
+      "gainPct": 75.6
+    },
+    {
+      "route": "/personalized/newsong",
+      "tier": "P0",
+      "desc": "推荐新歌",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 9638.6,
+        "samples": 6747,
+        "p50": 0.27,
+        "p90": 0.93,
+        "bytes": 127443,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 10937.1,
+        "samples": 7656,
+        "p50": 0.24,
+        "p90": 0.75,
+        "bytes": 127443,
+        "errors": 0
+      },
+      "gainPct": 13.5
+    },
+    {
+      "route": "/personalized/privatecontent",
+      "tier": "P0",
+      "desc": "独家放送",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24411.4,
+        "samples": 17088,
+        "p50": 0.11,
+        "p90": 0.23,
+        "bytes": 1195,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12980,
+        "samples": 9086,
+        "p50": 0.22,
+        "p90": 0.5,
+        "bytes": 1195,
+        "errors": 0
+      },
+      "gainPct": 88.1
+    },
+    {
+      "route": "/personalized/privatecontent/list",
+      "tier": "P0",
+      "desc": "独家放送列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14365.7,
+        "samples": 10056,
+        "p50": 0.22,
+        "p90": 0.36,
+        "bytes": 11745,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22341.4,
+        "samples": 15639,
+        "p50": 0.12,
+        "p90": 0.23,
+        "bytes": 11745,
+        "errors": 0
+      },
+      "gainPct": 55.5
+    },
+    {
+      "route": "/pl/count",
+      "tier": "P0",
+      "desc": "数字专辑-新碟上架",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24267.1,
+        "samples": 16987,
+        "p50": 0.11,
+        "p90": 0.24,
+        "bytes": 0,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12354.3,
+        "samples": 8648,
+        "p50": 0.22,
+        "p90": 0.45,
+        "bytes": 0,
+        "errors": 0
+      },
+      "gainPct": 96.4
+    },
+    {
+      "route": "/playlist/catlist",
+      "tier": "P0",
+      "desc": "全部歌单分类",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13785.7,
+        "samples": 9650,
+        "p50": 0.21,
+        "p90": 0.4,
+        "bytes": 9400,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18388.6,
+        "samples": 12872,
+        "p50": 0.13,
+        "p90": 0.36,
+        "bytes": 9400,
+        "errors": 0
+      },
+      "gainPct": 33.4
+    },
+    {
+      "route": "/playlist/cover/update",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 400,
+        "rps": null
+      },
+      "old": {
+        "status": 400,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/create",
+      "tier": "P1",
+      "desc": "创建歌单",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/delete",
+      "tier": "P1",
+      "desc": "删除歌单",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/desc/update",
+      "tier": "P0",
+      "desc": "更新歌单描述",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12842.9,
+        "samples": 8990,
+        "p50": 0.22,
+        "p90": 0.42,
+        "bytes": 103,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23741.4,
+        "samples": 16619,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 103,
+        "errors": 0
+      },
+      "gainPct": 84.9
+    },
+    {
+      "route": "/playlist/detail",
+      "tier": "P0",
+      "desc": "歌单详情",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24207.1,
+        "samples": 16945,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 115,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13678.6,
+        "samples": 9575,
+        "p50": 0.22,
+        "p90": 0.38,
+        "bytes": 115,
+        "errors": 0
+      },
+      "gainPct": 77
+    },
+    {
+      "route": "/playlist/detail/dynamic",
+      "tier": "P0",
+      "desc": "初始化名字",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14762.9,
+        "samples": 10334,
+        "p50": 0.21,
+        "p90": 0.33,
+        "bytes": 172,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25058.6,
+        "samples": 17541,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 172,
+        "errors": 0
+      },
+      "gainPct": 69.7
+    },
+    {
+      "route": "/playlist/highquality/tags",
+      "tier": "P0",
+      "desc": "精品歌单 tags",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25015.7,
+        "samples": 17511,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 2089,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14910,
+        "samples": 10437,
+        "p50": 0.21,
+        "p90": 0.33,
+        "bytes": 2089,
+        "errors": 0
+      },
+      "gainPct": 67.8
+    },
+    {
+      "route": "/playlist/hot",
+      "tier": "P0",
+      "desc": "热门歌单分类",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 15032.9,
+        "samples": 10523,
+        "p50": 0.21,
+        "p90": 0.33,
+        "bytes": 3185,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25320,
+        "samples": 17724,
+        "p50": 0.12,
+        "p90": 0.19,
+        "bytes": 3185,
+        "errors": 0
+      },
+      "gainPct": 68.4
+    },
+    {
+      "route": "/playlist/mylike",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/name/update",
+      "tier": "P0",
+      "desc": "更新歌单名",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14444.3,
+        "samples": 10111,
+        "p50": 0.22,
+        "p90": 0.34,
+        "bytes": 103,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 22841.4,
+        "samples": 15989,
+        "p50": 0.11,
+        "p90": 0.24,
+        "bytes": 103,
+        "errors": 0
+      },
+      "gainPct": 58.1
+    },
+    {
+      "route": "/playlist/order/update",
+      "tier": "P1",
+      "desc": "编辑歌单顺序",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/privacy",
+      "tier": "P0",
+      "desc": "公开隐私歌单",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14985.7,
+        "samples": 10490,
+        "p50": 0.21,
+        "p90": 0.32,
+        "bytes": 103,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25541.4,
+        "samples": 17879,
+        "p50": 0.11,
+        "p90": 0.18,
+        "bytes": 103,
+        "errors": 0
+      },
+      "gainPct": 70.4
+    },
+    {
+      "route": "/playlist/subscribe",
+      "tier": "P0",
+      "desc": "收藏与取消收藏歌单",
+      "cacheable": true,
+      "new": {
+        "status": 403,
+        "rps": null
+      },
+      "old": {
+        "status": 403,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/subscribers",
+      "tier": "P0",
+      "desc": "歌单收藏者",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13035.7,
+        "samples": 9125,
+        "p50": 0.22,
+        "p90": 0.47,
+        "bytes": 8763,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 17551.4,
+        "samples": 12286,
+        "p50": 0.13,
+        "p90": 0.37,
+        "bytes": 8763,
+        "errors": 0
+      },
+      "gainPct": 34.6
+    },
+    {
+      "route": "/playlist/tags/update",
+      "tier": "P0",
+      "desc": "更新歌单标签",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 23330,
+        "samples": 16331,
+        "p50": 0.11,
+        "p90": 0.24,
+        "bytes": 103,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13482.9,
+        "samples": 9438,
+        "p50": 0.22,
+        "p90": 0.37,
+        "bytes": 103,
+        "errors": 0
+      },
+      "gainPct": 73
+    },
+    {
+      "route": "/playlist/track/add",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/track/all",
+      "tier": "P0",
+      "desc": "通过传过来的歌单id拿到所有歌曲数据",
+      "cacheable": true,
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/track/delete",
+      "tier": "P1",
+      "desc": "收藏单曲到歌单 从歌单删除歌曲",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/playlist/tracks",
+      "tier": "P0",
+      "desc": "收藏单曲到歌单 从歌单删除歌曲",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24947.1,
+        "samples": 17463,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 103,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 15075.7,
+        "samples": 10553,
+        "p50": 0.21,
+        "p90": 0.33,
+        "bytes": 103,
+        "errors": 0
+      },
+      "gainPct": 65.5
+    },
+    {
+      "route": "/playlist/update",
+      "tier": "P0",
+      "desc": "编辑歌单",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14798.6,
+        "samples": 10359,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 408,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23610,
+        "samples": 16527,
+        "p50": 0.11,
+        "p90": 0.23,
+        "bytes": 408,
+        "errors": 0
+      },
+      "gainPct": 59.5
+    },
+    {
+      "route": "/playlist/update/playcount",
+      "tier": "P0",
+      "desc": "歌单打卡",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25890,
+        "samples": 18123,
+        "p50": 0.11,
+        "p90": 0.18,
+        "bytes": 12,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12435.7,
+        "samples": 8705,
+        "p50": 0.22,
+        "p90": 0.54,
+        "bytes": 12,
+        "errors": 0
+      },
+      "gainPct": 108.2
+    },
+    {
+      "route": "/playlist/video/recent",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13687.1,
+        "samples": 9581,
+        "p50": 0.21,
+        "p90": 0.43,
+        "bytes": 46,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21994.3,
+        "samples": 15396,
+        "p50": 0.11,
+        "p90": 0.28,
+        "bytes": 46,
+        "errors": 0
+      },
+      "gainPct": 60.7
+    },
+    {
+      "route": "/playmode/intelligence/list",
+      "tier": "P1",
+      "desc": "智能播放",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/program/recommend",
+      "tier": "P0",
+      "desc": "推荐节目",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 6060,
+        "samples": 4242,
+        "p50": 0.42,
+        "p90": 1.42,
+        "bytes": 236076,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 7634.3,
+        "samples": 5344,
+        "p50": 0.36,
+        "p90": 1.09,
+        "bytes": 236076,
+        "errors": 0
+      },
+      "gainPct": 26
+    },
+    {
+      "route": "/recommend/resource",
+      "tier": "P1",
+      "desc": "每日推荐歌单",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/recommend/songs",
+      "tier": "P0",
+      "desc": "每日推荐歌曲",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13184.3,
+        "samples": 9229,
+        "p50": 0.22,
+        "p90": 0.45,
+        "bytes": 39082,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 19058.6,
+        "samples": 13341,
+        "p50": 0.15,
+        "p90": 0.3,
+        "bytes": 39082,
+        "errors": 0
+      },
+      "gainPct": 44.6
+    },
+    {
+      "route": "/record/recent/album",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25487.1,
+        "samples": 17841,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 54,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14267.1,
+        "samples": 9987,
+        "p50": 0.21,
+        "p90": 0.36,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 78.6
+    },
+    {
+      "route": "/record/recent/dj",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14901.4,
+        "samples": 10431,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 54,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25084.3,
+        "samples": 17559,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 68.3
+    },
+    {
+      "route": "/record/recent/playlist",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25657.1,
+        "samples": 17960,
+        "p50": 0.11,
+        "p90": 0.18,
+        "bytes": 54,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14308.6,
+        "samples": 10016,
+        "p50": 0.21,
+        "p90": 0.35,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 79.3
+    },
+    {
+      "route": "/record/recent/song",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12481.4,
+        "samples": 8737,
+        "p50": 0.22,
+        "p90": 0.51,
+        "bytes": 54,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18291.4,
+        "samples": 12804,
+        "p50": 0.12,
+        "p90": 0.38,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 46.5
+    },
+    {
+      "route": "/record/recent/video",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 14560,
+        "samples": 10192,
+        "p50": 0.15,
+        "p90": 0.52,
+        "bytes": 54,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 5568.6,
+        "samples": 3898,
+        "p50": 0.5,
+        "p90": 1.27,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 161.5
+    },
+    {
+      "route": "/record/recent/voice",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 9594.3,
+        "samples": 6716,
+        "p50": 0.26,
+        "p90": 0.76,
+        "bytes": 54,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 20275.7,
+        "samples": 14193,
+        "p50": 0.11,
+        "p90": 0.31,
+        "bytes": 54,
+        "errors": 0
+      },
+      "gainPct": 111.3
+    },
+    {
+      "route": "/related/allvideo",
+      "tier": "P0",
+      "desc": "相关视频",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25250,
+        "samples": 17675,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 42,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14411.4,
+        "samples": 10088,
+        "p50": 0.21,
+        "p90": 0.36,
+        "bytes": 42,
+        "errors": 0
+      },
+      "gainPct": 75.2
+    },
+    {
+      "route": "/related/playlist",
+      "tier": "P0",
+      "desc": "相关歌单",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14362.9,
+        "samples": 10054,
+        "p50": 0.22,
+        "p90": 0.38,
+        "bytes": 1155,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24585.7,
+        "samples": 17210,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 1161,
+        "errors": 0
+      },
+      "gainPct": 71.2
+    },
+    {
+      "route": "/resource/like",
+      "tier": "P1",
+      "desc": "点赞与取消点赞资源",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/scrobble",
+      "tier": "P0",
+      "desc": "听歌打卡",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14465.7,
+        "samples": 10126,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 42,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24990,
+        "samples": 17493,
+        "p50": 0.11,
+        "p90": 0.21,
+        "bytes": 42,
+        "errors": 0
+      },
+      "gainPct": 72.8
+    },
+    {
+      "route": "/search",
+      "tier": "P0",
+      "desc": "搜索",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 20072.9,
+        "samples": 14051,
+        "p50": 0.13,
+        "p90": 0.29,
+        "bytes": 23217,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 7457.1,
+        "samples": 5220,
+        "p50": 0.32,
+        "p90": 1.06,
+        "bytes": 23217,
+        "errors": 0
+      },
+      "gainPct": 169.2
+    },
+    {
+      "route": "/search/default",
+      "tier": "P0",
+      "desc": "默认搜索关键词",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12717.1,
+        "samples": 8902,
+        "p50": 0.22,
+        "p90": 0.49,
+        "bytes": 870,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21775.7,
+        "samples": 15243,
+        "p50": 0.12,
+        "p90": 0.27,
+        "bytes": 870,
+        "errors": 0
+      },
+      "gainPct": 71.2
+    },
+    {
+      "route": "/search/hot",
+      "tier": "P0",
+      "desc": "热门搜索",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 23590,
+        "samples": 16513,
+        "p50": 0.11,
+        "p90": 0.23,
+        "bytes": 614,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 15107.1,
+        "samples": 10575,
+        "p50": 0.21,
+        "p90": 0.36,
+        "bytes": 614,
+        "errors": 0
+      },
+      "gainPct": 56.2
+    },
+    {
+      "route": "/search/hot/detail",
+      "tier": "P0",
+      "desc": "热搜列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12601.4,
+        "samples": 8821,
+        "p50": 0.21,
+        "p90": 0.49,
+        "bytes": 2550,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24694.3,
+        "samples": 17286,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 2550,
+        "errors": 0
+      },
+      "gainPct": 96
+    },
+    {
+      "route": "/search/multimatch",
+      "tier": "P0",
+      "desc": "多类型搜索",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24675.7,
+        "samples": 17273,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 2401,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14467.1,
+        "samples": 10127,
+        "p50": 0.21,
+        "p90": 0.38,
+        "bytes": 2401,
+        "errors": 0
+      },
+      "gainPct": 70.6
+    },
+    {
+      "route": "/search/suggest",
+      "tier": "P0",
+      "desc": "搜索建议",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14288.6,
+        "samples": 10002,
+        "p50": 0.21,
+        "p90": 0.38,
+        "bytes": 5180,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23608.6,
+        "samples": 16526,
+        "p50": 0.12,
+        "p90": 0.22,
+        "bytes": 5180,
+        "errors": 0
+      },
+      "gainPct": 65.2
+    },
+    {
+      "route": "/send/album",
+      "tier": "P1",
+      "desc": "私信专辑",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/send/playlist",
+      "tier": "P1",
+      "desc": "私信歌单",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/send/song",
+      "tier": "P1",
+      "desc": "私信歌曲",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/send/text",
+      "tier": "P1",
+      "desc": "私信",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/setting",
+      "tier": "P0",
+      "desc": "设置",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22914.3,
+        "samples": 16040,
+        "p50": 0.11,
+        "p90": 0.22,
+        "bytes": 12,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14701.4,
+        "samples": 10291,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 12,
+        "errors": 0
+      },
+      "gainPct": 55.9
+    },
+    {
+      "route": "/share/resource",
+      "tier": "P1",
+      "desc": "分享歌曲到动态",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/sheet/list",
+      "tier": "P0",
+      "desc": "乐谱列表",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22165.7,
+        "samples": 15516,
+        "p50": 0.11,
+        "p90": 0.25,
+        "bytes": 144,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13188.6,
+        "samples": 9232,
+        "p50": 0.22,
+        "p90": 0.47,
+        "bytes": 144,
+        "errors": 0
+      },
+      "gainPct": 68.1
+    },
+    {
+      "route": "/sheet/preview",
+      "tier": "P0",
+      "desc": "乐谱预览",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 13802.9,
+        "samples": 9662,
+        "p50": 0.22,
+        "p90": 0.38,
+        "bytes": 35,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25247.1,
+        "samples": 17673,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 35,
+        "errors": 0
+      },
+      "gainPct": 82.9
+    },
+    {
+      "route": "/sign/happy/info",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25347.1,
+        "samples": 17743,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 27,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14662.9,
+        "samples": 10264,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 27,
+        "errors": 0
+      },
+      "gainPct": 72.9
+    },
+    {
+      "route": "/signin/progress",
+      "tier": "P1",
+      "desc": "签到进度",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/simi/artist",
+      "tier": "P1",
+      "desc": "相似歌手",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/simi/mv",
+      "tier": "P0",
+      "desc": "相似MV",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14335.7,
+        "samples": 10035,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 2281,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 21428.6,
+        "samples": 15000,
+        "p50": 0.11,
+        "p90": 0.27,
+        "bytes": 2281,
+        "errors": 0
+      },
+      "gainPct": 49.5
+    },
+    {
+      "route": "/simi/playlist",
+      "tier": "P0",
+      "desc": "相似歌单",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25420,
+        "samples": 17794,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 27,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13760,
+        "samples": 9632,
+        "p50": 0.22,
+        "p90": 0.41,
+        "bytes": 27,
+        "errors": 0
+      },
+      "gainPct": 84.7
+    },
+    {
+      "route": "/simi/song",
+      "tier": "P0",
+      "desc": "相似歌曲",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 11091.4,
+        "samples": 7764,
+        "p50": 0.24,
+        "p90": 0.6,
+        "bytes": 20943,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 12647.1,
+        "samples": 8853,
+        "p50": 0.2,
+        "p90": 0.55,
+        "bytes": 20943,
+        "errors": 0
+      },
+      "gainPct": 14
+    },
+    {
+      "route": "/simi/user",
+      "tier": "P1",
+      "desc": "相似用户",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/song/detail",
+      "tier": "P0",
+      "desc": "歌曲详情",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 12672.9,
+        "samples": 8871,
+        "p50": 0.22,
+        "p90": 0.45,
+        "bytes": 2128,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23178.6,
+        "samples": 16225,
+        "p50": 0.12,
+        "p90": 0.23,
+        "bytes": 2128,
+        "errors": 0
+      },
+      "gainPct": 82.9
+    },
+    {
+      "route": "/song/download/url",
+      "tier": "P0",
+      "desc": "获取客户端歌曲下载链接",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24611.4,
+        "samples": 17228,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 735,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13795.7,
+        "samples": 9657,
+        "p50": 0.22,
+        "p90": 0.41,
+        "bytes": 735,
+        "errors": 0
+      },
+      "gainPct": 78.4
+    },
+    {
+      "route": "/song/order/update",
+      "tier": "P1",
+      "desc": "更新歌曲顺序",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/song/purchased",
+      "tier": "P1",
+      "desc": "已购单曲",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/song/url",
+      "tier": "P0",
+      "desc": "歌曲链接",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14707.1,
+        "samples": 10295,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 1126,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24955.7,
+        "samples": 17469,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 1126,
+        "errors": 0
+      },
+      "gainPct": 69.7
+    },
+    {
+      "route": "/song/url/v1",
+      "tier": "P0",
+      "desc": "歌曲链接 - v1",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25051.4,
+        "samples": 17536,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 1122,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14422.9,
+        "samples": 10096,
+        "p50": 0.21,
+        "p90": 0.38,
+        "bytes": 1122,
+        "errors": 0
+      },
+      "gainPct": 73.7
+    },
+    {
+      "route": "/song/wiki/summary",
+      "tier": "P0",
+      "desc": "音乐百科基础信息",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 8365.7,
+        "samples": 5856,
+        "p50": 0.29,
+        "p90": 0.95,
+        "bytes": 54609,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 13110,
+        "samples": 9177,
+        "p50": 0.17,
+        "p90": 0.54,
+        "bytes": 54609,
+        "errors": 0
+      },
+      "gainPct": 56.7
+    },
+    {
+      "route": "/style/album",
+      "tier": "P0",
+      "desc": "曲风-专辑",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22055.7,
+        "samples": 15439,
+        "p50": 0.11,
+        "p90": 0.28,
+        "bytes": 86,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14067.1,
+        "samples": 9847,
+        "p50": 0.21,
+        "p90": 0.4,
+        "bytes": 86,
+        "errors": 0
+      },
+      "gainPct": 56.8
+    },
+    {
+      "route": "/style/artist",
+      "tier": "P0",
+      "desc": "曲风-歌手",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14677.1,
+        "samples": 10274,
+        "p50": 0.21,
+        "p90": 0.36,
+        "bytes": 87,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25004.3,
+        "samples": 17503,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 87,
+        "errors": 0
+      },
+      "gainPct": 70.4
+    },
+    {
+      "route": "/style/detail",
+      "tier": "P0",
+      "desc": "曲风详情",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 24755.7,
+        "samples": 17329,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 24,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14521.4,
+        "samples": 10165,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 24,
+        "errors": 0
+      },
+      "gainPct": 70.5
+    },
+    {
+      "route": "/style/list",
+      "tier": "P0",
+      "desc": "曲风列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 8992.9,
+        "samples": 6295,
+        "p50": 0.27,
+        "p90": 0.99,
+        "bytes": 149846,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 10038.6,
+        "samples": 7027,
+        "p50": 0.26,
+        "p90": 0.81,
+        "bytes": 149846,
+        "errors": 0
+      },
+      "gainPct": 11.6
+    },
+    {
+      "route": "/style/playlist",
+      "tier": "P0",
+      "desc": "曲风-歌单",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 25365.7,
+        "samples": 17756,
+        "p50": 0.11,
+        "p90": 0.2,
+        "bytes": 88,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13918.6,
+        "samples": 9743,
+        "p50": 0.21,
+        "p90": 0.39,
+        "bytes": 88,
+        "errors": 0
+      },
+      "gainPct": 82.2
+    },
+    {
+      "route": "/style/preference",
+      "tier": "P0",
+      "desc": "曲风偏好",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14785.7,
+        "samples": 10350,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 53,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25504.3,
+        "samples": 17853,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 53,
+        "errors": 0
+      },
+      "gainPct": 72.5
+    },
+    {
+      "route": "/style/song",
+      "tier": "P0",
+      "desc": "曲风-歌曲",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22228.6,
+        "samples": 15560,
+        "p50": 0.11,
+        "p90": 0.26,
+        "bytes": 85,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12011.4,
+        "samples": 8408,
+        "p50": 0.22,
+        "p90": 0.54,
+        "bytes": 85,
+        "errors": 0
+      },
+      "gainPct": 85.1
+    },
+    {
+      "route": "/top/album",
+      "tier": "P0",
+      "desc": "新碟上架",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/top/artists",
+      "tier": "P0",
+      "desc": "热门歌手",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 22307.1,
+        "samples": 15615,
+        "p50": 0.13,
+        "p90": 0.24,
+        "bytes": 17915,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13818.6,
+        "samples": 9673,
+        "p50": 0.22,
+        "p90": 0.4,
+        "bytes": 17915,
+        "errors": 0
+      },
+      "gainPct": 61.4
+    },
+    {
+      "route": "/top/list",
+      "tier": "P0",
+      "desc": "排行榜",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14537.1,
+        "samples": 10176,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 115,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25345.7,
+        "samples": 17742,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 115,
+        "errors": 0
+      },
+      "gainPct": 74.4
+    },
+    {
+      "route": "/top/mv",
+      "tier": "P0",
+      "desc": "MV排行榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 21655.7,
+        "samples": 15159,
+        "p50": 0.11,
+        "p90": 0.28,
+        "bytes": 12,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13384.3,
+        "samples": 9369,
+        "p50": 0.22,
+        "p90": 0.43,
+        "bytes": 12,
+        "errors": 0
+      },
+      "gainPct": 61.8
+    },
+    {
+      "route": "/top/playlist",
+      "tier": "P0",
+      "desc": "分类歌单",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 9671.4,
+        "samples": 6770,
+        "p50": 0.27,
+        "p90": 0.85,
+        "bytes": 102330,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 11705.7,
+        "samples": 8194,
+        "p50": 0.22,
+        "p90": 0.65,
+        "bytes": 102255,
+        "errors": 0
+      },
+      "gainPct": 21
+    },
+    {
+      "route": "/top/playlist/highquality",
+      "tier": "P0",
+      "desc": "精品歌单",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 10960,
+        "samples": 7672,
+        "p50": 0.24,
+        "p90": 0.72,
+        "bytes": 128714,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 8897.1,
+        "samples": 6228,
+        "p50": 0.29,
+        "p90": 0.96,
+        "bytes": 128759,
+        "errors": 0
+      },
+      "gainPct": 23.2
+    },
+    {
+      "route": "/top/song",
+      "tier": "P0",
+      "desc": "新歌速递",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14834.3,
+        "samples": 10384,
+        "p50": 0.21,
+        "p90": 0.33,
+        "bytes": 22,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 25874.3,
+        "samples": 18112,
+        "p50": 0.11,
+        "p90": 0.19,
+        "bytes": 22,
+        "errors": 0
+      },
+      "gainPct": 74.4
+    },
+    {
+      "route": "/topic/detail",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/topic/detail/event/hot",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/topic/sublist",
+      "tier": "P1",
+      "desc": "收藏的专栏",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/toplist",
+      "tier": "P0",
+      "desc": "所有榜单介绍",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10828.6,
+        "samples": 7580,
+        "p50": 0.24,
+        "p90": 0.69,
+        "bytes": 80255,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 11715.7,
+        "samples": 8201,
+        "p50": 0.2,
+        "p90": 0.71,
+        "bytes": 80255,
+        "errors": 0
+      },
+      "gainPct": 8.2
+    },
+    {
+      "route": "/toplist/artist",
+      "tier": "P0",
+      "desc": "歌手榜",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 18204.3,
+        "samples": 12743,
+        "p50": 0.15,
+        "p90": 0.33,
+        "bytes": 45206,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13031.4,
+        "samples": 9122,
+        "p50": 0.23,
+        "p90": 0.45,
+        "bytes": 45206,
+        "errors": 0
+      },
+      "gainPct": 39.7
+    },
+    {
+      "route": "/toplist/detail",
+      "tier": "P0",
+      "desc": "所有榜单内容摘要",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 10018.6,
+        "samples": 7013,
+        "p50": 0.26,
+        "p90": 0.83,
+        "bytes": 89382,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 12645.7,
+        "samples": 8852,
+        "p50": 0.2,
+        "p90": 0.58,
+        "bytes": 89382,
+        "errors": 0
+      },
+      "gainPct": 26.2
+    },
+    {
+      "route": "/user/account",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/audio",
+      "tier": "P0",
+      "desc": "用户创建的电台",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/binding",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": false,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/bindingcellphone",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": false,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/cloud",
+      "tier": "P1",
+      "desc": "云盘数据",
+      "cacheable": false,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/cloud/del",
+      "tier": "P1",
+      "desc": "云盘歌曲删除",
+      "cacheable": false,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/cloud/detail",
+      "tier": "P1",
+      "desc": "云盘数据详情",
+      "cacheable": false,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/comment/history",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/detail",
+      "tier": "P0",
+      "desc": "用户详情",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/dj",
+      "tier": "P0",
+      "desc": "用户电台节目",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/event",
+      "tier": "P0",
+      "desc": "用户动态",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/followeds",
+      "tier": "P0",
+      "desc": "关注TA的人(粉丝)",
+      "cacheable": false,
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/follows",
+      "tier": "P0",
+      "desc": "TA关注的人(关注)",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/level",
+      "tier": "P1",
+      "desc": "类别热门电台",
+      "cacheable": false,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/playlist",
+      "tier": "P0",
+      "desc": "用户歌单",
+      "cacheable": false,
+      "new": {
+        "status": 200,
+        "rps": null
+      },
+      "old": {
+        "status": 200,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/record",
+      "tier": "P0",
+      "desc": "听歌排行",
+      "cacheable": false,
+      "old": {
+        "status": 400,
+        "rps": null
+      },
+      "new": {
+        "status": 400,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/replacephone",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": false,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/subcount",
+      "tier": "P1",
+      "desc": "收藏计数",
+      "cacheable": false,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/user/update",
+      "tier": "P0",
+      "desc": "编辑用户信息",
+      "cacheable": false,
+      "new": {
+        "status": 403,
+        "rps": null
+      },
+      "old": {
+        "status": 403,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/category/list",
+      "tier": "P1",
+      "desc": "视频分类列表",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/detail",
+      "tier": "P0",
+      "desc": "视频详情",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 23368.6,
+        "samples": 16358,
+        "p50": 0.11,
+        "p90": 0.22,
+        "bytes": 82,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 13941.4,
+        "samples": 9759,
+        "p50": 0.21,
+        "p90": 0.38,
+        "bytes": 82,
+        "errors": 0
+      },
+      "gainPct": 67.6
+    },
+    {
+      "route": "/video/detail/info",
+      "tier": "P0",
+      "desc": "视频点赞转发评论数数据",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14797.1,
+        "samples": 10358,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 73,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 23965.7,
+        "samples": 16776,
+        "p50": 0.11,
+        "p90": 0.22,
+        "bytes": 73,
+        "errors": 0
+      },
+      "gainPct": 62
+    },
+    {
+      "route": "/video/group",
+      "tier": "P1",
+      "desc": "视频标签/分类下的视频",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/group/list",
+      "tier": "P0",
+      "desc": "视频标签列表",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14257.1,
+        "samples": 9980,
+        "p50": 0.21,
+        "p90": 0.37,
+        "bytes": 10838,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 24177.1,
+        "samples": 16924,
+        "p50": 0.12,
+        "p90": 0.2,
+        "bytes": 10838,
+        "errors": 0
+      },
+      "gainPct": 69.6
+    },
+    {
+      "route": "/video/sub",
+      "tier": "P1",
+      "desc": "收藏与取消收藏视频",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/timeline/all",
+      "tier": "P1",
+      "desc": "全部视频列表",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/timeline/recommend",
+      "tier": "P1",
+      "desc": "推荐视频",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/video/url",
+      "tier": "P0",
+      "desc": "视频链接",
+      "cacheable": true,
+      "old": {
+        "status": 200,
+        "rps": 14875.7,
+        "samples": 10413,
+        "p50": 0.21,
+        "p90": 0.34,
+        "bytes": 22,
+        "errors": 0
+      },
+      "new": {
+        "status": 200,
+        "rps": 18052.9,
+        "samples": 12637,
+        "p50": 0.12,
+        "p90": 0.38,
+        "bytes": 22,
+        "errors": 0
+      },
+      "gainPct": 21.4
+    },
+    {
+      "route": "/vip/growthpoint",
+      "tier": "P0",
+      "desc": "会员成长值",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 16830,
+        "samples": 11781,
+        "p50": 0.12,
+        "p90": 0.4,
+        "bytes": 3285,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 12865.7,
+        "samples": 9006,
+        "p50": 0.22,
+        "p90": 0.45,
+        "bytes": 3285,
+        "errors": 0
+      },
+      "gainPct": 30.8
+    },
+    {
+      "route": "/vip/growthpoint/details",
+      "tier": "P1",
+      "desc": "会员成长值领取记录",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/vip/growthpoint/get",
+      "tier": "P0",
+      "desc": "领取会员成长值",
+      "cacheable": true,
+      "new": {
+        "status": 401,
+        "rps": null
+      },
+      "old": {
+        "status": 401,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/vip/info",
+      "tier": "P1",
+      "desc": "获取 VIP 信息",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/vip/tasks",
+      "tier": "P1",
+      "desc": "会员任务",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/vip/timemachine",
+      "tier": "P1",
+      "desc": "黑胶时光机",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/weblog",
+      "tier": "P0",
+      "desc": "操作记录",
+      "cacheable": true,
+      "new": {
+        "status": 200,
+        "rps": 23280,
+        "samples": 16296,
+        "p50": 0.11,
+        "p90": 0.23,
+        "bytes": 42,
+        "errors": 0
+      },
+      "old": {
+        "status": 200,
+        "rps": 14822.9,
+        "samples": 10376,
+        "p50": 0.21,
+        "p90": 0.36,
+        "bytes": 42,
+        "errors": 0
+      },
+      "gainPct": 57.1
+    },
+    {
+      "route": "/yunbei",
+      "tier": "P1",
+      "desc": "/api/point/today/get",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/expense",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/info",
+      "tier": "P0",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 404,
+        "rps": null
+      },
+      "new": {
+        "status": 404,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/rcmd/song",
+      "tier": "P1",
+      "desc": "云贝推歌",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/rcmd/song/history",
+      "tier": "P1",
+      "desc": "云贝推歌历史记录",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/receipt",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/sign",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/task/finish",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/tasks",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/tasks/todo",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    },
+    {
+      "route": "/yunbei/today",
+      "tier": "P1",
+      "desc": "",
+      "cacheable": true,
+      "old": {
+        "status": 301,
+        "rps": null
+      },
+      "new": {
+        "status": 301,
+        "rps": null
+      },
+      "gainPct": null
+    }
+  ]
+}

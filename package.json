@@ -3,24 +3,31 @@
   "version": "4.8.11",
   "description": "网易云音乐 NodeJS 版 API",
   "scripts": {
-    "start": "node cluster.js",
-    "start:single": "node app.js",
-    "start:dev": "node --watch app.js",
-    "test": "mocha -r intelli-espower-loader -t 60000 server.test.js main.test.js --exit",
-    "lint": "eslint \"**/*.{js,ts}\"",
-    "lint-fix": "eslint --fix \"**/*.{js,ts}\"",
+    "start": "tsx src/main.ts",
+    "start:cluster": "tsx src/cluster.ts",
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start:prod": "node dist/main.js",
+    "typecheck": "tsc --noEmit",
+    "regression": "node scripts/api-regression.cjs --base http://localhost:3000 --tier P0,P1",
+    "regression:compare": "node scripts/api-regression.cjs --base http://localhost:3000 --tier P0,P1 --compare docs/regression-baseline.json --out docs/regression-latest.json --md docs/regression-report.md",
+    "plan": "node scripts/gen-api-test-plan.cjs",
+    "verify:identity": "tsx scripts/verify-qr-identity.ts",
+    "config:anon": "tsx scripts/generate-config.ts",
+    "test": "mocha \"test/**/*.test.ts\"",
+    "lint": "eslint \"src/**/*.ts\" \"scripts/**/*.{cjs,ts}\"",
+    "lint-fix": "npm run lint -- --fix",
     "prepare": "husky install",
-    "pkgwin": "pkg . -t node14-win-x64 -C GZip -o bin/app --no-bytecode",
-    "pkglinux": "pkg . -t node14-linux-x64 -C GZip -o bin/app --no-bytecode",
-    "pkgmacos": "pkg . -t node14-macos-x64 -C GZip -o bin/app --no-bytecode"
+    "verify:contracts": "node scripts/verify-contracts.cjs --out docs/contract-report.md",
+    "regression:authed": "node scripts/api-regression.cjs --base http://localhost:3000 --tier P0,P1,P2 --out docs/regression-authed.json"
   },
-  "bin": "./app.js",
+  "bin": "./dist/main.js",
   "pkg": {
-    "scripts": "module/*.js",
+    "scripts": "dist/**/*.js",
     "assets": [
       "node_modules/axios",
-      "node_modules/express",
-      "node_modules/express-fileupload",
+      "node_modules/fastify",
+      "node_modules/@fastify",
       "node_modules/md5",
       "node_modules/music-metadata",
       "node_modules/pac-proxy-agent",
@@ -30,7 +37,6 @@
       "node_modules/yargs",
       "node_modules/tslib",
       "node_modules/vm2",
-      "module",
       "public"
     ]
   },
@@ -40,13 +46,13 @@
     "音乐",
     "网易云音乐nodejs"
   ],
-  "main": "main.js",
-  "types": "./interface.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=12"
+    "node": ">=20"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,ts}": [
       "eslint --fix",
       "git add"
     ]
@@ -54,21 +60,22 @@
   "author": "binaryify",
   "license": "MIT",
   "files": [
-    "module",
-    "util",
-    "plugins",
-    "main.d.ts",
-    "interface.d.ts",
-    "module_types",
-    "server.js",
-    "generateConfig.js",
-    "public"
+    "dist",
+    "src",
+    "docs",
+    "scripts",
+    "static",
+    "interface.d.ts"
   ],
   "dependencies": {
+    "@fastify/compress": "^9.2.0",
+    "@fastify/formbody": "^9.0.0",
+    "@fastify/multipart": "^10.1.1",
+    "@fastify/swagger": "^9.8.1",
+    "@fastify/swagger-ui": "^6.1.1",
     "@unblockneteasemusic/server": "^0.27.5",
     "axios": "^1.2.2",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.1.9",
+    "fastify": "^5.12.5",
     "md5": "^2.3.0",
     "music-metadata": "^7.5.3",
     "pac-proxy-agent": "^5.0.0",
@@ -78,10 +85,8 @@
     "yargs": "^17.1.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/express-fileupload": "^1.2.2",
     "@types/mocha": "^9.1.0",
-    "@types/node": "16.11.19",
+    "@types/node": "^22.20.4",
     "@typescript-eslint/eslint-plugin": "5.0.0",
     "@typescript-eslint/parser": "5.0.0",
     "eslint": "8.7.0",
@@ -95,6 +100,7 @@
     "pkg": "^5.8.0",
     "power-assert": "1.6.1",
     "prettier": "2.7.1",
-    "typescript": "4.5.2"
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
   }
 }

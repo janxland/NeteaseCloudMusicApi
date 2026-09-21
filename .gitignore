@@ -5,4 +5,5 @@ node_modules
 .vscode
 .history
 examples/moddef.json
+dist
 bin

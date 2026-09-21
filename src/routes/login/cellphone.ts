@@ -1,0 +1,44 @@
+import type { ModuleQuery, ModuleRequest } from '../../types'
+
+// 手机登录
+
+const crypto = require('node:crypto')
+
+export default async (query: ModuleQuery, request: ModuleRequest) => {
+  query.cookie.os = 'ios'
+  query.cookie.appver = '8.7.01'
+  const data: Record<string, any> = {
+    phone: query.phone,
+    countrycode: query.countrycode || '86',
+    captcha: query.captcha,
+    [query.captcha ? 'captcha' : 'password']: query.captcha
+      ? query.captcha
+      : query.md5_password ||
+        crypto.createHash('md5').update(query.password).digest('hex'),
+    rememberLogin: 'true',
+  }
+  let result: any = await request(
+    'POST',
+    `https://music.163.com/weapi/login/cellphone`,
+    data,
+    {
+      crypto: 'weapi',
+      ua: 'pc',
+      cookie: query.cookie,
+      proxy: query.proxy,
+      realIP: query.realIP,
+    },
+  )
+
+  if (result.body.code === 200) {
+    result = {
+      status: 200,
+      body: {
+        ...result.body,
+        cookie: result.cookie.join(';'),
+      },
+      cookie: result.cookie,
+    }
+  }
+  return result
+}

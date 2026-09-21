@@ -1,1 +1,2 @@
-require('./app.js')
+require('tsx/cjs')
+require('./src/main.ts')

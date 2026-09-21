@@ -22,9 +22,14 @@
 [greats3an/pyncm](https://github.com/greats3an/pyncm)
 
 
+> **本仓库已重构为 TypeScript + Fastify**，对外接口行为与原 Express 版逐接口对齐
+> （281 条路由，267 条自动用例全绿、与重构前基线零差异）。
+> 进度、契约与踩坑记录见 [`docs/refactor-roadmap.md`](docs/refactor-roadmap.md)，
+> 接口清单与验收步骤见 [`docs/refactor-api-test-plan.md`](docs/refactor-api-test-plan.md)。
+
 ## 环境要求
 
-需要 NodeJS 12+ 环境
+需要 NodeJS 20+ 环境
 
 ## 安装
 
@@ -46,20 +51,26 @@ $ npm install
 调用前务必阅读文档的`调用前须知`
 
 ```shell
-$ node app.js
+$ npm start            # tsx 直跑 src/main.ts，单进程
+$ npm run start:cluster # 多进程（按 CPU 核数 fork，崩溃自愈）
 ```
 
 服务器启动默认端口为 3000,若不想使用 3000 端口,可使用以下命令: Mac/Linux
 
 ```shell
-$ PORT=4000 node app.js
+$ PORT=4000 npm start
 ```
 
 windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
 
 ```shell
-$ set PORT=4000 && node app.js
+$ set PORT=4000 && npm start
 ```
+
+本地开发用 `npm run dev`（`tsx watch`，改源码即重启）。生产建议先 `npm run build`
+再 `npm run start:prod`（跑 `dist/` 里的编译产物，省掉运行期转译）。
+
+启动后可访问 `/documentation` 查看 Swagger UI，`/healthz` 返回路由数与缓存状态。
 
 ## Vercel 部署
 
@@ -82,20 +93,23 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 3. 顶部`创建方式`选择 `Web 应用`
 4. 选择 `Express框架`,点击底部`下一步按钮`
 5. 输入`应用名`,上传方式选择`代码仓库`,进行GitHub授权(如已授权可跳过这一步),代码仓库选择刚刚fork的项目
-6. 启动文件填入:
+6. 启动文件填入（仓库根目录的 `scf_bootstrap` 已就位，直接照抄）:
 ```
 #!/bin/bash
 export PORT=9000
-/var/lang/node16/bin/node app.js
+node --require tsx/cjs src/main.ts
 ``` 
 7. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
 
 ## 可以在Node.js调用
 
-v3.31.0后支持Node.js调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
+导入的方法名与路由一致（`/login/cellphone` → `login_cellphone`），返回内容包含 `status`
+和 `body`，`status` 为状态码，`body` 为请求返回内容。完整可跑示例见
+`module_example/`（`test.ts`、`avatar_upload.ts`、`song_upload.ts`、`user_cloud.ts`）。
 
 ```js
-const { login_cellphone, user_cloud } = require('NeteaseCloudMusicApi')
+const api = require('./dist')          // 或 require('NeteaseCloudMusicApi')
+const { login_cellphone, user_cloud } = api
 async function main() {
   try {
     const result = await login_cellphone({
@@ -124,6 +138,9 @@ banner({ type:0 }).then(res=>{
   console.log(res)
 })
 ```
+
+本仓库源码本身就是 TypeScript，类型定义随 `npm run build` 一起产出到 `dist/`；
+`npm run typecheck` 做全量类型检查，`interface.d.ts` 保留原有的人工维护签名。
 
 
 ## 使用文档
@@ -397,11 +414,25 @@ banner({ type:0 }).then(res=>{
 ## 单元测试
 
 ```shell
-$ npm test
+$ npm test          # mocha，会自动起一个随机端口的实例（test/bootstrap.ts）
 ```
 
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot1.png)
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot2.png)
+## 接口回归验收（重构后必跑）
+
+`module/*.js` 已不复存在，接口清单与断言来源是 `src/routes/**/*.ts`；
+用例文档由 `scripts/gen-api-test-plan.cjs` 扫源码生成，回归执行器是 `scripts/api-regression.cjs`。
+
+```shell
+$ npm start &                              # 起服务
+$ npm run regression:compare               # 全量 P0+P1 与重构前基线对比
+# 期望输出：一致=267 差异=0 缺失=0
+
+$ node scripts/verify-contracts.cjs --out docs/contract-report.md   # 框架级契约 C1-C12
+$ node scripts/api-regression.cjs --tier P2 --cookie "MUSIC_U=..."  # 带登录态跑人工层
+```
+
+对比的是**结构指纹**（递归 key + 值类型，数组取首元素）+ `body.code`，
+所以歌曲列表实时变化不会误报，但字段丢失 / 类型变了 / 层级变了会被抓出来。
 
 ## SDK
 
