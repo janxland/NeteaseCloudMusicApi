@@ -228,10 +228,20 @@ const buildApp = async () => {
   })
 
   // 解灰：惰性加载 + 必须兜底（原 .then 无 catch 会冒泡成 unhandledRejection）
-  const UNBLOCK_SOURCES = { basic: ['pyncmd'], extended: ['pyncmd', 'qq', 'kugou', 'bilibili'] }
+  // 源分组只按一条硬规则：https=true 的分支必须只含「能回 https 直链」的源，
+  // 否则浏览器端会因混合内容直接不放行。实测（30 首付费独占灰歌 / 生产网络）：
+  //   pyncmd 30/30 且全 https 320k；bodian、kuwo、qq 只回 http（kuwo 还只有 64k）
+  //   qq / kugou / bilibili / migu / joox 在生产网络 0/30，纯刷错误日志
+  const UNBLOCK_SOURCES = {
+    basic: ['pyncmd', 'bodian', 'kuwo'],
+    extended: ['pyncmd'],
+  }
   let unblockMatcher: any = null
   const serveUnblock = async (req: FastifyRequest, reply: FastifyReply) => {
     try {
+      // 默认是并发抢答、先到先赢：kuwo 只有 64k，却可能在 pyncmd 抖动时抢先返回，
+      // 把音质拉低。按数组顺序取源才能保证「320k 优先、64k 只当最后防线」。
+      process.env.FOLLOW_SOURCE_ORDER ||= 'true'
       unblockMatcher ||= require('@unblockneteasemusic/server')
       const sources =
         (req.query as any)?.https === 'true' ? UNBLOCK_SOURCES.extended : UNBLOCK_SOURCES.basic
