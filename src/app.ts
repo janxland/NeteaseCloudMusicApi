@@ -165,32 +165,36 @@ const buildApp = async () => {
   })
   await app.register(swaggerUi, { routePrefix: '/documentation' })
 
-  // 代理抓取（不可缓存路由之一）
-  app.all('/puppeteer', async (req, reply) => {
-    const url = (req.body as any)?.url || (req.query as any)?.url
-    if (!url) return reply.status(400).send('Missing "url" parameter')
-    try {
-      const res = await axios.get(url, {
-        headers: { 'User-Agent': 'janxland/ablaze-backend' },
-        timeout: 10000,
-      })
-      return reply.send(res.data)
-    } catch (error) {
-      console.error((error && error.message) || error)
-      return reply.status(500).send('Error fetching URL content')
-    }
-  })
+  // 代理抓取：**默认关闭**。它会以本机身份去请求调用方给的任意 URL，等于一个公开的
+  // SSRF 面（部署后 nginx 同时公开了 www 的 /api/scrape 与 music 的 /api/puppeteer，
+  // 实测 url=http://127.0.0.1:3000/healthz 可原样取回内网响应）。
+  // 需要恢复时显式设 ENABLE_PUPPETEER=1。
+  if (process.env.ENABLE_PUPPETEER === '1') {
+    app.all('/puppeteer', async (req, reply) => {
+      const url = (req.body as any)?.url || (req.query as any)?.url
+      if (!url) return reply.status(400).send('Missing "url" parameter')
+      try {
+        const res = await axios.get(url, {
+          headers: { 'User-Agent': 'janxland/ablaze-backend' },
+          timeout: 10000,
+        })
+        return reply.send(res.data)
+      } catch (error) {
+        console.error((error && error.message) || error)
+        return reply.status(500).send('Error fetching URL content')
+      }
+    })
+  }
 
-  // 自持凭据：读写都必须实时，故不进缓存（cache-policy UNCACHEABLE 已含 /netease/）
-  app.get('/netease/credential', (_req, reply) => {
-    const entry = credentialStore.read()
-    if (!entry || !entry.cookie) {
-      reply.status(404).type('text/plain').send('')
-      return
-    }
-    reply.type('text/plain').send(entry.cookie)
-  })
-
+  // 自持凭据：只保留「播放器登录后 POST 同步」这一个入口。
+  // 原来的 GET 响应体就是账号会话 cookie 本身，而反代会把它公开出去
+  // （www /api/netapi/netease/credential、music /api/netease/credential 实测匿名 200），
+  // 拿到即等于接管站主账号；DELETE 同样可被匿名调用清空线上凭据。
+  // 唯一消费者是 www vhost 里做首页注入的 lua，它是直连 127.0.0.1:3000 的裸请求；
+  // 改为直读挂载文件 /www/wwwroot/ncm-share（nginx worker 以 www 运行，权限本来就够）后，
+  // 这两个方法就不再需要存在，整体移除。
+  // POST 保留：写入前有 /user/account 的 uid 归属校验（非站主 cookie 直接 403），
+  // 且播放器把它当机会性同步、不读响应。
   app.post('/netease/credential', async (req, reply) => {
     const cookie =
       typeof (req.body as any)?.cookie === 'string'
@@ -221,10 +225,6 @@ const buildApp = async () => {
         msg: String((error && error.message) || error),
       })
     }
-  })
-
-  app.delete('/netease/credential', (_req, reply) => {
-    reply.send({ ok: credentialStore.clear() })
   })
 
   // 解灰：惰性加载 + 必须兜底（原 .then 无 catch 会冒泡成 unhandledRejection）
@@ -349,10 +349,14 @@ const buildApp = async () => {
           }
           reply.status(moduleResponse.status).send(moduleResponse.body)
         } catch (moduleResponse: any) {
-          console.log('[ERR]', decode(req.url), {
-            status: moduleResponse?.status,
-            body: moduleResponse?.body,
-          })
+          const status = moduleResponse?.status
+          // 上游 4xx 是常态流量（资源不存在、netease -601 限流），和 5xx 同打 [ERR] 会把真故障淹掉；
+          // 只记状态码/错误消息，不回显 body（其中可能含用户数据）
+          console.log(
+            !(status < 500) ? '[ERR]' : '[4XX]',
+            decode(req.url),
+            status ?? moduleResponse?.message,
+          )
           if (!moduleResponse?.body) {
             reply.status(404).send({ code: 404, data: null, msg: 'Not Found' })
             return

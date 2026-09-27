@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 框架级契约 C1-C13 的机械验收 + P2 人工用例冒烟。
+// 框架级契约 C1-C14 的机械验收 + P2 人工用例冒烟。
 // 用法：node scripts/verify-contracts.cjs [--base http://localhost:3000] [--out docs/contract-report.md]
 const fs = require('fs')
 const path = require('path')
@@ -99,15 +99,17 @@ const main = async () => {
     return `${paths.length} 条路径均未命中缓存`
   })
 
-  // C6 凭据读取
-  await check('C6', 'GET /netease/credential → 200 或 404', async () => {
+  // C6 凭据只写不读：GET 的响应体曾经是站主账号的会话 cookie 本体，
+  // 而反代把同一条路径公开了（www /api/netapi/…、music /api/…）→ 必须拿不到
+  await check('C6', 'GET /netease/credential 已移除且不回显 cookie', async () => {
     const r = await req('/netease/credential')
-    assert(r.status === 200 || r.status === 404, `status=${r.status}`)
-    return `status=${r.status}`
+    assert(r.status === 404, `status=${r.status}`)
+    assert(!/MUSIC_U=/.test(r.text), `响应体里仍有 cookie：${r.text.slice(0, 40)}`)
+    return '404（无凭据可读）'
   })
 
-  // C7 凭据写入/删除（写需要真实 MUSIC_U，这里验护栏与删除）
-  await check('C7', '凭据写入护栏 + 删除', async () => {
+  // C7 凭据写入：播放器登录后机会性同步用的公开入口，保留；DELETE 可被匿名清空，移除
+  await check('C7', '凭据写入护栏保留 + DELETE 已移除', async () => {
     const bad = await req('/netease/credential', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -115,8 +117,8 @@ const main = async () => {
     })
     assert(bad.status === 400, `无 MUSIC_U 应 400，实际 ${bad.status}`)
     const del = await req('/netease/credential', { method: 'DELETE' })
-    assert(del.body && typeof del.body.ok === 'boolean', `删除返回异常：${del.text.slice(0, 60)}`)
-    return `400(缺 MUSIC_U) + DELETE ok=${del.body.ok}`
+    assert(del.status === 404, `DELETE 应 404，实际 ${del.status}`)
+    return '400(缺 MUSIC_U) + DELETE 404'
   })
 
   // C8 多源扇出
@@ -139,15 +141,17 @@ const main = async () => {
     return `/cloud=${cloud.status}（无 cookie 走 301/参数校验），/album=${other.status}`
   })
 
-  // C10 解灰
-  await check('C10', '/song/unblock 走 unblock 服务', async () => {
-    const r = await req('/song/unblock?id=347230')
-    assert(r.status === 200 || r.status === 502, `status=${r.status}`)
-    assert(
-      !(r.body && r.body.code === 200 && r.body.data && r.body.data[0]),
-      '返回了网易云原响应（未走 unblock 分支）',
-    )
-    return `status=${r.status}${r.body && r.body.msg ? ' ' + r.body.msg : ''}`
+  // C10 解灰：必须真拿到可播直链。旧断言把 502 也算通过，所以「解灰全挂」那几天契约是绿的。
+  await check('C10', '/song/unblock 走 unblock 服务并给出可播直链', async () => {
+    const r = await req('/song/unblock?id=347230&https=true')
+    const ok = r.body || {}
+    // https=true 只允许 https 直链，否则浏览器按混合内容拦掉
+    assert(r.status === 200, `https=true status=${r.status} msg=${ok.msg}`)
+    assert(/^https:\/\//.test(ok.url || ''), `未拿到 https 直链: ${ok.url}`)
+    assert(Number(ok.br) >= 128000, `音质过低 br=${ok.br}`)
+    const b = await req('/song/unblock?id=347230')
+    assert(b.status === 200 && b.body && b.body.url, `basic status=${b.status}`)
+    return `${ok.source} ${ok.br} kbps`
   })
 
   // C11 方法矩阵：Express 版用的是 app.use(route)，所有 HTTP 方法都进同一个 handler
@@ -194,6 +198,15 @@ const main = async () => {
     const names = (searchParams.parameters || []).map((p) => p.name)
     assert(names.includes('keywords'), `OpenAPI 文档丢了 query 参数：${JSON.stringify(names)}`)
     return `重复参数=200（非 400），OpenAPI 仍含 ${names.length} 个参数`
+  })
+
+  // C14 SSRF：/puppeteer 会以本机身份请求调用方给的任意 URL，而反代把它公开了
+  // （music /api/puppeteer、www /api/scrape），实测可原样取回 127.0.0.1:3000 的响应。
+  // 现在默认不存在，只有 ENABLE_PUPPETEER=1 才注册。
+  await check('C14', '/puppeteer 默认关闭（公开 SSRF 面已去除）', async () => {
+    const probe = await req('/puppeteer?url=' + encodeURIComponent(BASE + '/healthz'))
+    assert(probe.status === 404, `status=${probe.status}，仍可抓取：${probe.text.slice(0, 60)}`)
+    return '指向本机 /healthz 也拿不到（404）'
   })
 
   // P2 冒烟：按用例声明的方法发请求（GET 走 query，写操作走 JSON body，/cloud 带假文件），
@@ -249,7 +262,7 @@ const main = async () => {
   }
 
   const passed = results.filter((r) => r.pass).length
-  console.log(`\n契约 C1-C13：${passed}/${results.length} 通过；P2 冒烟 ${p2.length} 条`)
+  console.log(`\n契约 C1-C14：${passed}/${results.length} 通过；P2 冒烟 ${p2.length} 条`)
 
   if (OUT) {
     const lines = [
