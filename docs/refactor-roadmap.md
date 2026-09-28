@@ -11,8 +11,8 @@
 | 1 TS 化基建 | ✅ | `tsconfig.json`（分级 strict）、`tsconfig.build.json`、`npm run typecheck` **0 error**、`src/types.ts`、`src/shims.d.ts` |
 | 2 请求层收口 | ✅ | `src/core/{upstream,crypto,cookies,cache,cache-policy,client-profile,credential-store}.ts`——`util/*.js` 已全部内联为 TS 并删除 |
 | 3 路由迁移 | ✅ | `src/routes/**/*.ts` 281 个（单一来源，`module/*.js` 已删除），`src/core/routes.ts` 自动发现 |
-| 4 切框架 | ✅ | `src/app.ts`（Fastify 5）：CORS/OPTIONS 204、cookie 解析、缓存 hook、`/cloud` multipart、`/puppeteer`、`/netease/credential`、`/song/unblock`、qq/kugou 扇出、Swagger UI |
-| 5 文档与观测 | ✅ | `/documentation`、`/healthz`（路由数 + 缓存状态）、`docs/contract-report.md`（C1-C13）、P2 冒烟清单 |
+| 4 切框架 | ✅ | `src/app.ts`（Fastify 5）：CORS/OPTIONS 204、cookie 解析、缓存 hook、`/cloud` multipart、`/netease/credential`（只写 + 元信息健康度，不回显 cookie）、`/song/unblock`、qq/kugou 扇出、Swagger UI |
+| 5 文档与观测 | ✅ | `/documentation`、`/healthz`（路由数 + 缓存状态）、`docs/contract-report.md`（C1-C15）、P2 冒烟清单 |
 
 **验收结果**
 

@@ -346,8 +346,11 @@ ${modules
 | C3 | 任意接口带 \`?noCookie=1\` | 响应不含 Set-Cookie | ☐ |
 | C4 | 同一接口连发两次（2 分钟内） | 第二次命中缓存，响应体一致、耗时显著降低 | ☐ |
 | C5 | \`/login/*\`、\`/captcha/*\`、\`/user/*\`、\`/daily_signin\`、\`/netease/*\` | 不被缓存（两次响应内容可不同） | ☐ |
-| C6 | \`GET /netease/credential\` | 200（有凭据）/ 404（无凭据） | ☐ |
-| C7 | \`POST /netease/credential\` + \`DELETE /netease/credential\` | 写入后可读、删除后 404 | ☐ |
+| C6 | \`GET /netease/credential\` | **已移除**：404，且任何响应都不得出现 \`MUSIC_U=\`（它就是站主会话本体） | ☐ |
+| C7 | \`POST /netease/credential\` + \`DELETE /netease/credential\` | POST 保留（播放器登录后同步，缺 MUSIC_U → 400、非站主 uid → 403）；DELETE 已移除 → 404 | ☐ |
+| C13 | 同名查询参数重复（\`?keywords=a&keywords=b\`） | 不被 schema 拦下（对齐 Express），仍 200；schema 只进 OpenAPI 文档 | ☐ |
+| C14 | \`/puppeteer\` | 已整体删除：GET/POST 均 404，不存在以本机身份抓取调用方给定 URL 的能力 | ☐ |
+| C15 | \`GET /netease/credential/status\` | 只回元信息（uid/source/updatedAt/ageHours/cookieLen/hasMusicU），响应体永不含 cookie | ☐ |
 | C8 | 路由 + \`?server=qq\` / \`?server=kugou\` | 扇出到 src/core/multiverse/{qq,kugou}.ts，格式与 \`server=netease\` 同构 | ☐ |
 | C9 | \`/cloud\`（multipart，100MB 上限） | 仅该路由解析 multipart；超限拒绝 | ☐ |
 | C10 | \`/song/unblock\` | 走 @unblockneteasemusic/server，路由文件不执行 | ☐ |
