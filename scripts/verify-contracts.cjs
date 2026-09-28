@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 框架级契约 C1-C14 的机械验收 + P2 人工用例冒烟。
+// 框架级契约 C1-C15 的机械验收 + P2 人工用例冒烟。
 // 用法：node scripts/verify-contracts.cjs [--base http://localhost:3000] [--out docs/contract-report.md]
 const fs = require('fs')
 const path = require('path')
@@ -89,7 +89,8 @@ const main = async () => {
 
   // C5 不可缓存名单
   await check('C5', 'UNCACHEABLE 路径不被缓存', async () => {
-    const paths = ['/login/qr/key', '/logout', '/user/account', '/daily_signin']
+    const paths = ['/login/qr/key', '/logout', '/user/account', '/daily_signin',
+      '/netease/credential/status']
     const bad = []
     for (const p of paths) {
       const r = await req(`${p}?c=${Date.now()}`)
@@ -216,6 +217,24 @@ const main = async () => {
     return 'GET/POST 均 404（指向本机 /healthz 也拿不到）'
   })
 
+  // C15 凭据健康度端点：它是唯一新增的 /netease/* GET，价值全在「只报元信息」。
+  // 一旦有人往里加 cookie 字段，就等于把 C6 关掉的泄露面重新打开，所以这条必须钉死。
+  await check('C15', 'credential/status 只回元信息、永不含凭据内容', async () => {
+    const r = await req('/netease/credential/status')
+    assert(
+      r.status === 200 || r.status === 404,
+      `status=${r.status}（期望 200 有凭据 / 404 无凭据）`,
+    )
+    assert(!/MUSIC_U=/.test(r.text), `响应体含 MUSIC_U → 凭据被回显：${r.text.slice(0, 60)}`)
+    assert(!/"cookie"\s*:/.test(r.text), `响应体含 cookie 字段：${r.text.slice(0, 80)}`)
+    if (r.status === 404) return '404 无凭据，且响应不含凭据内容'
+    const b = JSON.parse(r.text)
+    assert(b.ok === true && typeof b.cookieLen === 'number', `元信息缺字段：${r.text}`)
+    assert(typeof b.hasMusicU === 'boolean' && b.ageHours !== undefined, `元信息缺字段：${r.text}`)
+    assert(!('cookie' in b) && !('nickname' in b), '元信息里混进了身份/凭据字段')
+    return `200 uid=${b.uid} source=${b.source} cookieLen=${b.cookieLen} ageHours=${b.ageHours}`
+  })
+
   // P2 冒烟：按用例声明的方法发请求（GET 走 query，写操作走 JSON body，/cloud 带假文件），
   // 不做断言，只记录状态码，供人工清单对照
   console.log('\nP2 人工用例冒烟（无真实凭据/文件，仅确认链路可达）')
@@ -269,7 +288,7 @@ const main = async () => {
   }
 
   const passed = results.filter((r) => r.pass).length
-  console.log(`\n契约 C1-C14：${passed}/${results.length} 通过；P2 冒烟 ${p2.length} 条`)
+  console.log(`\n契约 C1-C15：${passed}/${results.length} 通过；P2 冒烟 ${p2.length} 条`)
 
   if (OUT) {
     const lines = [

@@ -164,14 +164,13 @@ const buildApp = async () => {
   })
   await app.register(swaggerUi, { routePrefix: '/documentation' })
 
-  // 自持凭据：只保留「播放器登录后 POST 同步」这一个入口。
-  // 原来的 GET 响应体就是账号会话 cookie 本身，而反代会把它公开出去
+  // 自持凭据：写入口 + 只读健康度，两条，都不回显 cookie。
+  // 原来的 GET /netease/credential 响应体就是账号会话 cookie 本身，而反代会把它公开出去
   // （www /api/netapi/netease/credential、music /api/netease/credential 实测匿名 200），
-  // 拿到即等于接管站主账号；DELETE 同样可被匿名调用清空线上凭据。
-  // 唯一消费者是 www vhost 里做首页注入的 lua，它是直连 127.0.0.1:3000 的裸请求；
-  // 改为直读挂载文件 /www/wwwroot/ncm-share（nginx worker 以 www 运行，权限本来就够）后，
-  // 这两个方法就不再需要存在，整体移除。
-  // POST 保留：写入前有 /user/account 的 uid 归属校验（非站主 cookie 直接 403），
+  // 拿到即等于接管站主账号；DELETE 同样可被匿名调用清空线上凭据。两者已整体移除。
+  // 原先唯一的消费者是 www vhost 里做注入的 lua（直连 127.0.0.1:3000 的裸请求），
+  // 现改为直读挂载文件 /www/wwwroot/ncm-share（nginx worker 以 www 运行，权限本来就够）。
+  // POST 写入前有 /user/account 的 uid 归属校验（非站主 cookie 直接 403），
   // 且播放器把它当机会性同步、不读响应。
   app.post('/netease/credential', async (req, reply) => {
     const cookie =
@@ -203,6 +202,28 @@ const buildApp = async () => {
         msg: String((error && error.message) || error),
       })
     }
+  })
+
+  // 凭据健康度：只报元信息，响应体永不含 cookie —— 这是它和被删掉的那个 GET 的唯一区别。
+  // 存在的意义是给「播放器登录 → POST → 落盘 → nginx 直读」这条链一个可核对的端点：
+  // cookie 失效不报错，只会静默退回匿名、灰歌取不到直链，没这里就只能登服务器翻文件。
+  // 刻意不做下游校验（不调 /user/account）：那等于给任意调用方一个「用站主 cookie 打网易云」的按钮。
+  app.get('/netease/credential/status', async (_req, reply) => {
+    const entry = credentialStore.read()
+    if (!entry) {
+      reply.status(404).send({ ok: false, reason: 'no_credential' })
+      return
+    }
+    const updated = Date.parse(entry.updatedAt || '')
+    reply.send({
+      ok: true,
+      uid: entry.uid ?? null,
+      source: entry.source ?? null,
+      updatedAt: entry.updatedAt ?? null,
+      ageHours: Number.isNaN(updated) ? null : Math.round(((Date.now() - updated) / 3.6e6) * 10) / 10,
+      hasMusicU: /MUSIC_U=/.test(entry.cookie),
+      cookieLen: entry.cookie.length,
+    })
   })
 
   // 解灰：惰性加载 + 必须兜底（原 .then 无 catch 会冒泡成 unhandledRejection）
