@@ -200,13 +200,20 @@ const main = async () => {
     return `重复参数=200（非 400），OpenAPI 仍含 ${names.length} 个参数`
   })
 
-  // C14 SSRF：/puppeteer 会以本机身份请求调用方给的任意 URL，而反代把它公开了
-  // （music /api/puppeteer、www /api/scrape），实测可原样取回 127.0.0.1:3000 的响应。
-  // 现在默认不存在，只有 ENABLE_PUPPETEER=1 才注册。
-  await check('C14', '/puppeteer 默认关闭（公开 SSRF 面已去除）', async () => {
+  // C14 SSRF：/puppeteer 会以本机身份请求调用方给的任意 URL，而反代把它公开了两条路径
+  // （music /api/puppeteer、www /api/scrape），实测 url=127.0.0.1:3000/healthz 可原样取回。
+  // 无任何源码级消费者（本仓库、ablaze-backend、各前端 src、回归用例表都查过），已整体删除；
+  // 这条契约是防止将来有人「顺手加回来」。
+  await check('C14', '/puppeteer 已删除（不再存在公开 SSRF 面）', async () => {
     const probe = await req('/puppeteer?url=' + encodeURIComponent(BASE + '/healthz'))
     assert(probe.status === 404, `status=${probe.status}，仍可抓取：${probe.text.slice(0, 60)}`)
-    return '指向本机 /healthz 也拿不到（404）'
+    const post = await req('/puppeteer', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ url: BASE + '/healthz' }),
+    })
+    assert(post.status === 404, `POST status=${post.status}`)
+    return 'GET/POST 均 404（指向本机 /healthz 也拿不到）'
   })
 
   // P2 冒烟：按用例声明的方法发请求（GET 走 query，写操作走 JSON body，/cloud 带假文件），

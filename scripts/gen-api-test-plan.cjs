@@ -33,7 +33,6 @@ const RESERVED = new Set(['cookie', 'proxy', 'realIP', 'ua', 'timestamp'])
 const MANUAL_KEYWORDS = [
   '/cloud',
   '/upload',
-  '/puppeteer',
   '/register',
   '/captcha',
   '/sms',
@@ -346,7 +345,7 @@ ${modules
 | C2 | 不存在的路由 \`GET /__not_exist\` | 404，HTML 体 \`Cannot GET /__not_exist\`（与 Express finalhandler 同形） | ☐ |
 | C3 | 任意接口带 \`?noCookie=1\` | 响应不含 Set-Cookie | ☐ |
 | C4 | 同一接口连发两次（2 分钟内） | 第二次命中缓存，响应体一致、耗时显著降低 | ☐ |
-| C5 | \`/login/*\`、\`/captcha/*\`、\`/user/*\`、\`/daily_signin\`、\`/puppeteer\`、\`/netease/*\` | 不被缓存（两次响应内容可不同） | ☐ |
+| C5 | \`/login/*\`、\`/captcha/*\`、\`/user/*\`、\`/daily_signin\`、\`/netease/*\` | 不被缓存（两次响应内容可不同） | ☐ |
 | C6 | \`GET /netease/credential\` | 200（有凭据）/ 404（无凭据） | ☐ |
 | C7 | \`POST /netease/credential\` + \`DELETE /netease/credential\` | 写入后可读、删除后 404 | ☐ |
 | C8 | 路由 + \`?server=qq\` / \`?server=kugou\` | 扇出到 src/core/multiverse/{qq,kugou}.ts，格式与 \`server=netease\` 同构 | ☐ |

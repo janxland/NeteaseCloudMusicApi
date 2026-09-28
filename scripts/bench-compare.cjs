@@ -80,7 +80,6 @@ const UNCACHEABLE = [
   /^\/captcha_/,
   /^\/user\//,
   /^\/daily_signin/,
-  /^\/puppeteer/,
   /^\/netease\//,
 ]
 const isCacheable = (route) => !UNCACHEABLE.some((re) => re.test(route))

@@ -10,9 +10,8 @@ const UNCACHEABLE: RegExp[] = [
   /^\/captcha_/,
   /^\/user\//,
   /^\/daily_signin/,
-  /^\/puppeteer/,
-  // 凭据读写必须实时：缓存会让「刚粘贴的 cookie」延迟生效，
-  // 也会让 DELETE 清空后仍读到旧凭据
+  // 凭据入口现在只剩 POST（播放器登录后同步，本来就不进缓存）。这条是防御性的：
+  // /netease/* 下将来出现任何 GET 也不许缓存 —— 它读的是账号会话 cookie。
   /^\/netease\//,
 ]
 

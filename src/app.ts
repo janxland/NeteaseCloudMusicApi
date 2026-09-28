@@ -4,7 +4,6 @@ import path from 'node:path'
 
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify'
 import type { FastifyServerOptions } from 'fastify'
-import axios from 'axios'
 import formbody from '@fastify/formbody'
 import multipart from '@fastify/multipart'
 import swagger from '@fastify/swagger'
@@ -164,27 +163,6 @@ const buildApp = async () => {
     },
   })
   await app.register(swaggerUi, { routePrefix: '/documentation' })
-
-  // 代理抓取：**默认关闭**。它会以本机身份去请求调用方给的任意 URL，等于一个公开的
-  // SSRF 面（部署后 nginx 同时公开了 www 的 /api/scrape 与 music 的 /api/puppeteer，
-  // 实测 url=http://127.0.0.1:3000/healthz 可原样取回内网响应）。
-  // 需要恢复时显式设 ENABLE_PUPPETEER=1。
-  if (process.env.ENABLE_PUPPETEER === '1') {
-    app.all('/puppeteer', async (req, reply) => {
-      const url = (req.body as any)?.url || (req.query as any)?.url
-      if (!url) return reply.status(400).send('Missing "url" parameter')
-      try {
-        const res = await axios.get(url, {
-          headers: { 'User-Agent': 'janxland/ablaze-backend' },
-          timeout: 10000,
-        })
-        return reply.send(res.data)
-      } catch (error) {
-        console.error((error && error.message) || error)
-        return reply.status(500).send('Error fetching URL content')
-      }
-    })
-  }
 
   // 自持凭据：只保留「播放器登录后 POST 同步」这一个入口。
   // 原来的 GET 响应体就是账号会话 cookie 本身，而反代会把它公开出去
