@@ -17,13 +17,25 @@ import { cookieToJson } from './cookies'
 import * as credentialStore from './credential-store'
 import type { CookieJar } from '../types'
 
-/** 允许触发注入的页面来源：本站各子域；本地开发经 vite 代理转发，Origin 是 localhost */
-const ALLOWED_PAGE_ORIGIN =
-  /^https?:\/\/([\w-]+\.)*(roginx\.ink|localhost|127\.0\.0\.1)(?::\d+)?(?:\/|$)/
+/**
+ * 允许触发注入的页面主机 —— 逐台列名，不给泛域。
+ *
+ * 同一个后端挂着两个前端：www（本站，上报要服务的那一个）与 music（YesPlayMusic）。
+ * 2026-09-30 只放行 `same-origin` 而不看主机，于是 music 上每个匿名访客的切歌上报
+ * 都借到了站主凭据：4 小时内 6 个陌生 IP、188 首陌生歌被写进站主账号。
+ * 本地开发经 vite 代理转发，Origin/Host 都是 localhost。
+ */
+const ALLOWED_PAGE_HOST = /^(www\.roginx\.ink|localhost|127\.0\.0\.1)(?::\d+)?$/
+
+/** 从 Origin / Referer 头里取主机段（含端口） */
+const hostOf = (url: string): string => {
+  const match = /^[a-z]+:\/\/([^/?#]+)/i.exec(url.trim())
+  return match ? match[1] : ''
+}
 
 export interface OwnerRequest {
   ip: string
-  headers: { origin?: string; referer?: string; 'sec-fetch-site'?: string }
+  headers: { host?: string; origin?: string; referer?: string; 'sec-fetch-site'?: string }
 }
 
 /**
@@ -34,13 +46,16 @@ export interface OwnerRequest {
  * Referer，只认 Referer 的门禁会把真实上报 100% 拒掉（浏览器实测踩过）。
  * 而这个头由浏览器控制、页面脚本改不了，是跨站滥用的硬拦网。
  * 只有老浏览器不发它时，才退回 Origin/Referer 白名单。
+ *
+ * 但 Sec-Fetch-Site 只回答「页面与接口是否同域」，不回答「同的是哪一台」。
+ * 反代本站 API 的任何页面都是 same-origin，所以两条分支都必须再过一遍主机白名单。
  */
 const isOwnPage = (req: OwnerRequest): boolean => {
   const fetchSite = req.headers['sec-fetch-site']
-  if (fetchSite === 'same-origin') return true
-  const page = req.headers.origin || req.headers.referer || ''
-  if (fetchSite) return fetchSite === 'same-site' && ALLOWED_PAGE_ORIGIN.test(page)
-  return ALLOWED_PAGE_ORIGIN.test(page)
+  if (fetchSite === 'same-origin') return ALLOWED_PAGE_HOST.test(req.headers.host || '')
+  const page = hostOf(req.headers.origin || req.headers.referer || '')
+  if (fetchSite) return fetchSite === 'same-site' && ALLOWED_PAGE_HOST.test(page)
+  return ALLOWED_PAGE_HOST.test(page)
 }
 
 interface OwnerPolicy {

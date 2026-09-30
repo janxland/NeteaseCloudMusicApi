@@ -32,7 +32,8 @@ const main = () => {
   const req = (ip: string, headers: Record<string, string> = {}) => ({ ip, headers })
   const ROUTE = '/scrobble'
   /** 真实线上形态：本站页面发的同源请求。站内 meta 关了 Referer，所以它是空的 */
-  const ownPage = (ip: string) => req(ip, { 'sec-fetch-site': 'same-origin' })
+  const ownPage = (ip: string) =>
+    req(ip, { 'sec-fetch-site': 'same-origin', host: 'www.roginx.ink' })
 
   console.log('=== A) 白名单与调用方凭据优先 ===')
   assert.deepEqual(ownerVerdict(ownPage('9.9.9.1'), '/song/url', false), { action: 'skip' })
@@ -46,27 +47,33 @@ const main = () => {
   console.log('=== B) 页面来源门禁 ===')
   // 不可信来源只有一条后果：拿不到站主凭据。请求本身照旧走匿名 —— /scrobble 改造前
   // 就对脚本直连开放，门禁不把它变成默认拒绝。
-  const untrusted: Record<string, string>[] = [
+  const untrusted: [string, Record<string, string>][] = [
     // 站外页面跨站直连（Sec-Fetch-Site 由浏览器给出，伪造不了）
-    { 'sec-fetch-site': 'cross-site', origin: 'https://evil.example.com' },
+    ['站外页面跨站', { 'sec-fetch-site': 'cross-site', origin: 'https://evil.example.com' }],
     // 浏览器里手开 URL / 非 fetch 上下文
-    { 'sec-fetch-site': 'none' },
-    // 同站但 Origin 不是本站域名（拼接域名白嫖）
-    { 'sec-fetch-site': 'same-site', origin: 'https://evil.roginx.ink.attacker.com' },
+    ['手动开 URL', { 'sec-fetch-site': 'none' }],
+    // 同站但主机不是白名单上那台（拼接域名白嫖）
+    ['拼接域名', { 'sec-fetch-site': 'same-site', origin: 'https://evil.roginx.ink.attacker.com' }],
+    // 2026-09-30 事故：同一后端还反代着 music（YesPlayMusic），它的播放器替每个匿名
+    // 访客切歌上报，同源判据本身分不出「是哪一台前端」—— 必须连 Host 一起看
+    ['同后端第二个前端（同源分支）', { 'sec-fetch-site': 'same-origin', host: 'music.roginx.ink' }],
+    ['同后端第二个前端（同站分支）', { 'sec-fetch-site': 'same-site', origin: 'https://music.roginx.ink' }],
+    // 第三方把本 API 自建到自己域名下，页面调用同样是 same-origin
+    ['第三方自建同源直连', { 'sec-fetch-site': 'same-origin', host: 'api.attacker.com' }],
     // 老浏览器：没有 Sec-Fetch-Site，只能看 Origin/Referer —— 两个都没有（curl 直连）
-    {},
-    { referer: 'https://evil.example.com/scrobble' },
+    ['curl 直连（无任何来源头）', {}],
+    ['老浏览器 + 站外 Referer', { referer: 'https://evil.example.com/scrobble' }],
   ]
-  untrusted.forEach((headers, i) => {
+  untrusted.forEach(([label, headers], i) => {
     const v = ownerVerdict(req(`8.8.8.${i}`, headers), ROUTE, false)
-    assert.strictEqual(v.action, 'skip', `不可信来源不该被封锁，但绝不注入：${JSON.stringify(headers)}`)
-    assert.ok(!('cookie' in v), '不可信来源的裁决里绝不能带凭据')
+    assert.strictEqual(v.action, 'skip', `不可信来源不该被封锁，但绝不注入：${label}`)
+    assert.ok(!('cookie' in v), `不可信来源的裁决里绝不能带凭据：${label}`)
   })
-  ok('五种不可信来源一律不注入凭据，且原样放行（接口未被封锁）')
+  ok('八种不可信来源一律不注入凭据，且原样放行（接口未被封锁）')
 
   const allowed: [string, Record<string, string>][] = [
-    ['同源（本站播放器，无 Referer）', { 'sec-fetch-site': 'same-origin' }],
-    ['同站子域', { 'sec-fetch-site': 'same-site', origin: 'https://music.roginx.ink' }],
+    ['同源（本站播放器，无 Referer）', { 'sec-fetch-site': 'same-origin', host: 'www.roginx.ink' }],
+    ['同源带端口（本地起的服务）', { 'sec-fetch-site': 'same-origin', host: 'localhost:3000' }],
     ['老浏览器 + 本站 Referer', { referer: 'https://www.roginx.ink/library' }],
     ['本地开发（vite 代理）', { referer: 'http://localhost:9001/' }],
   ]
