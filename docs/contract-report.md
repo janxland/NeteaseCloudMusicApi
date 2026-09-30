@@ -1,7 +1,7 @@
 # 框架级契约验收报告
 
 > base: http://127.0.0.1:3000
-> 生成时间：2026-09-28 08:05:54
+> 生成时间：2026-09-30 04:41:10
 > 结论：**15/15 通过**
 
 | # | 契约 | 结果 | 实测 |
@@ -9,7 +9,7 @@
 | C1 | OPTIONS 任意路径 → 204 + CORS 头 | ✅ | 204 + ACAO=* |
 | C2 | 未知路由 → 404 HTML | ✅ | 404 + "Cannot GET /__not_exist" |
 | C3 | ?noCookie=1 → 不回写 Set-Cookie | ✅ | status=200，无 Set-Cookie |
-| C4 | 同一 GET 连发两次 → 第二次命中缓存 | ✅ | HIT，61640 bytes |
+| C4 | 同一 GET 连发两次 → 第二次命中缓存 | ✅ | HIT，61616 bytes |
 | C5 | UNCACHEABLE 路径不被缓存 | ✅ | 5 条路径均未命中缓存 |
 | C6 | GET /netease/credential 已移除且不回显 cookie | ✅ | 404（无凭据可读） |
 | C7 | 凭据写入护栏保留 + DELETE 已移除 | ✅ | 400(缺 MUSIC_U) + DELETE 404 |
@@ -20,7 +20,7 @@
 | C12 | /cloud 上传链路（带文件进模块 / 不带文件与 Express 同形 404） | ✅ | 带文件=301/code=301，不带文件=404 |
 | C13 | 同名查询参数重复不被拦截（对齐 Express 不校验） | ✅ | 重复参数=200（非 400），OpenAPI 仍含 5 个参数 |
 | C14 | /puppeteer 已删除（不再存在公开 SSRF 面） | ✅ | GET/POST 均 404（指向本机 /healthz 也拿不到） |
-| C15 | credential/status 只回元信息、永不含凭据内容 | ✅ | 200 uid=270496477 source=player-login cookieLen=44 ageHours=196.8 |
+| C15 | credential/status 只回元信息、永不含凭据内容 | ✅ | 200 uid=1 source=null cookieLen=29 ageHours=null |
 
 ## P2 人工用例冒烟（无真实凭据 / 文件，仅确认链路可达）
 
