@@ -52,7 +52,7 @@ interface OwnerPolicy {
 
 /** 站主自持路由白名单。加条目 = 扩凭据使用面，必须逐条审。 */
 export const OWNER_SELF_ROUTES: Record<string, OwnerPolicy> = {
-  // /scrobble → weapi/feedback/weblog，只追加听歌记录，不返回也不读账号数据
+  // /scrobble → eapi/feedback/weblog（clientlog 域），只追加听歌记录，不返回也不读账号数据
   '/scrobble': { minIntervalMs: 10_000, hourlyCap: 120 },
 }
 
