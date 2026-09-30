@@ -13,6 +13,7 @@
     "regression:compare": "node scripts/api-regression.cjs --base http://localhost:3000 --tier P0,P1 --compare docs/regression-baseline.json --out docs/regression-latest.json --md docs/regression-report.md",
     "plan": "node scripts/gen-api-test-plan.cjs",
     "verify:identity": "tsx scripts/verify-qr-identity.ts",
+    "verify:scrobble": "tsx scripts/verify-scrobble-owner.ts",
     "config:anon": "tsx scripts/generate-config.ts",
     "test": "mocha \"test/**/*.test.ts\"",
     "lint": "eslint \"src/**/*.ts\" \"scripts/**/*.{cjs,ts}\"",

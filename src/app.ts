@@ -15,6 +15,7 @@ import { upstream } from './core/upstream'
 import { cookieToJson, echoCookies, parseCookieHeader } from './core/cookies'
 import { cacheKey, cacheStats, readCache, shouldCache, writeCache } from './core/cache'
 import * as credentialStore from './core/credential-store'
+import { ownerVerdict } from './core/owner-routes'
 import { kugou } from './core/multiverse/kugou'
 import { qq } from './core/multiverse/qq'
 import userAccountModule from './routes/user/account'
@@ -321,7 +322,23 @@ const buildApp = async () => {
           body,
           files,
         )
-        const echo = !query.noCookie
+
+        // 站主自持路由：调用方没有网易云凭据时，按白名单注入站主凭据。
+        // 白名单/来源门禁/每 IP 配额集中在一处（core/owner-routes.ts），nginx 不再新增注入 location。
+        const verdict = ownerVerdict(
+          req,
+          def.route,
+          Boolean(query.cookie?.MUSIC_U || query.cookie?.MUSIC_A),
+        )
+        if (verdict.action === 'reject') {
+          reply.status(verdict.status).send({ code: verdict.status, msg: verdict.msg })
+          return
+        }
+        if (verdict.action === 'inject') query.cookie = verdict.cookie
+        // 注入站主凭据时必须关掉 Set-Cookie 回显：echoCookies 转发的是「上游响应的 cookie」，
+        // 而那次上游请求带的是站主会话，网易云回什么就可能把它签发的会话值原样发给这个匿名访客，
+        // 之后每次请求都会带着它回来。上报只需要响应体。
+        const echo = !query.noCookie && verdict.action !== 'inject'
 
         // 惰性加载：首次命中该路由时才 require 模块文件。必须放在 try 之外 ——
         // 下面的 catch 会把异常当作「module 返回的错误响应」，加载失败会被它

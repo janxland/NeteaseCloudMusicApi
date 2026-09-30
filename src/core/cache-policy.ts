@@ -13,6 +13,9 @@ const UNCACHEABLE: RegExp[] = [
   // 凭据入口现在只剩 POST（播放器登录后同步，本来就不进缓存）。这条是防御性的：
   // /netease/* 下将来出现任何 GET 也不许缓存 —— 它读的是账号会话 cookie。
   /^\/netease\//,
+  // 听歌上报是写操作，且匿名访客共用同一个 key（无 MUSIC_U → 'anonymous'）。
+  // 缓存会在 TTL 内把后到的上报直接判成命中、根本不打下游 —— 表现为「报了但最近播放没有」。
+  /^\/scrobble$/,
 ]
 
 /** 仅 200 且不在 UNCACHEABLE 名单内才可缓存 */
