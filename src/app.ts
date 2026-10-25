@@ -14,6 +14,7 @@ import { loadRoutes } from './core/routes'
 import { upstream } from './core/upstream'
 import { cookieToJson, echoCookies, parseCookieHeader } from './core/cookies'
 import { cacheKey, cacheStats, readCache, shouldCache, writeCache } from './core/cache'
+import { AGENT_NOTICE_HEADER, decorateAgentNotice } from './core/agent-notice'
 import * as credentialStore from './core/credential-store'
 import { ownerVerdict } from './core/owner-routes'
 import { kugou } from './core/multiverse/kugou'
@@ -102,6 +103,9 @@ const buildApp = async () => {
       reply.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type')
       reply.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
       reply.header('Content-Type', 'application/json; charset=utf-8')
+      // Agent 劝导层（响应头半边）：HTTP 层可读的「私人服务」声明。
+      // 放在 onRequest 是为了让缓存命中链路（跳过 preSerialization）也带头
+      reply.header('X-Agent-Notice', AGENT_NOTICE_HEADER)
     }
     if (req.method === 'OPTIONS') {
       reply.status(204).send('')
@@ -142,6 +146,13 @@ const buildApp = async () => {
     }
     return payload
   })
+
+  // Agent 劝导层（响应体半边）：JSON 对象统一追加 _agent 字段（内容见
+  // core/agent-notice.ts）。preSerialization 在序列化前运行，拿到的是对象、
+  // 改完由 Fastify 自己算 Content-Length；必须注册在缓存链路之后也没有顺序
+  // 问题——onSend（缓存写入）在 preSerialization 之后执行，入缓存的就是
+  // 带字段的最终形态，命中链路返回字符串、天然幂等不再进本钩子
+  app.addHook('preSerialization', async (_req, _reply, payload) => decorateAgentNotice(payload))
 
   // 压缩默认关闭：Express 版没装 compression（可选依赖缺失即跳过），开启后
   // onSend 拿到的是压缩流而非 JSON 字符串，会把空内容写进缓存（命中即空响应）。
